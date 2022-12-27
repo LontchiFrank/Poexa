@@ -1,8 +1,13 @@
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
+import MainNavigation from "./navigation/MainNavigation";
 
 function App() {
-  return <div className="bg-black text-white text-3xl">God Bless you!</div>;
+  return (
+    <>
+      <MainNavigation />
+    </>
+  );
 }
 
 export default App;

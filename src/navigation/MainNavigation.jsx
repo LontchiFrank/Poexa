@@ -1,20 +1,19 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { RouteLoader } from "../components";
-import { routes } from "./routes";
+
+const Main = lazy(() => import("../pages/Main/Main.screen"));
+const Login = lazy(() => import("../pages/Login/Login.screen"));
+const Register = lazy(() => import("../pages/Register/Register.screen"));
 
 function MainNavigation() {
   return (
     <Router>
       <Suspense fallback={<RouteLoader />}>
         <Routes>
-          {routes.map((route) => {
-            <Route
-              key={route.path}
-              path={route.path}
-              element={route.component}
-            />;
-          })}
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Suspense>
     </Router>
