@@ -1,6 +1,3 @@
-* {
-  font-family: "Inter", sans-serif;
-}
 .main_screen {
   width: 100%;
   height: 100vh;
@@ -9,4 +6,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   /* background: red; */
+}
+.whole {
+  width: 100%;
+}
+.hero {
+  width: 46%;
+  font-weight: 600;
 }
