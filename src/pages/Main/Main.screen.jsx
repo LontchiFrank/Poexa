@@ -5,13 +5,13 @@ import logo from "../../assert/PoeXa.png";
 function Main() {
   return (
     <section className={`${styles.main_screen}`}>
-      <div className=" md:container md:mx-auto px-28 pt-8 sm:px-12">
-        <nav className="flex justify-between ">
+      <div className="container px-28 mx-auto md:px-16 pt-8 max-[640px]:px-12">
+        <nav className="md:flex md:justify-between md:items-center sm:items-center sm:w-auto  sm:w-full ">
           <div className="flex justify-between items-center">
             <span className="text-2xl cursor-pointer ">
               <img src={logo} />
             </span>
-            <span className="text-3xl cursor-pointer md:hidden black">
+            <span className="text-2xl cursor-pointer md:hidden black">
               <ion-icon name="menu"></ion-icon>
             </span>
           </div>
