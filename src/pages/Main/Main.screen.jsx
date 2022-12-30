@@ -64,15 +64,17 @@ function Main() {
           </div>
         </nav>
         <div className={`${styles.whole} flex`}>
-          <div className={`${styles.hero} mt-24`}>
-            <h1 style={{ color: "rgba(22,13,61,0.902)", fontSize: "3.5em" }}>
+          <div className={`${styles.hero} mt-28`}>
+            <h1
+              className="md:text-6xl "
+              style={{ color: "rgba(22,13,61,0.902)" }}
+            >
               Discover highly useful Poems Resources & Tools.
             </h1>
             <p
+              className="md:text-3xl font-normal mt-3"
               style={{
                 color: "rgba(22,13,61,0.902)",
-                fontSize: "1.8em",
-                fontWeight: "normal",
               }}
             >
               A growing archive of 1000+ poems resources, by great poets for the
