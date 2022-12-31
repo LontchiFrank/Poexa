@@ -64,16 +64,16 @@ function Main() {
             </ul>
           </div>
         </nav>
-        <div className={`${styles.whole} w-full flex mt-28 `}>
-          <div className={`${styles.hero} w-2/5`}>
+        <div className={`${styles.whole} w-full md:flex mt-28  `}>
+          <div className={`${styles.hero} xl:w-2/5 md:w-full`}>
             <h1
-              className="md:text-6xl sm:3xl "
+              className="text-4xl md:text-5xl  xl:text-6xl"
               style={{ color: "rgba(22,13,61,0.902)" }}
             >
-              Discover highly useful Poems Resources & Tools.
+              Discover highly useful & amazing Poems Resources & Tools.
             </h1>
             <p
-              className="md:text-3xl sm:2xl font-normal mt-3"
+              className="text-2xl md:text-2xl sm:text-[16px] xl:text-3xl  font-normal mt-3"
               style={{
                 color: "rgba(22,13,61,0.902)",
               }}
@@ -83,9 +83,9 @@ function Main() {
             </p>
           </div>
           <div
-            className={`flex justify-center items-center w-3/5 ${styles.whole_image}`}
+            className={`flex justify-center items-center xl:w-3/5 md:w-full sm:w-full ${styles.whole_image}`}
           >
-            <img src={poet} className="h-full" />
+            <img src={poet} className="h-full " />
           </div>
         </div>
       </div>
