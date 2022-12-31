@@ -7,10 +7,12 @@
   background-repeat: no-repeat;
   /* background: red; */
 }
-.whole {
-  width: 100%;
-}
+
 .hero {
-  width: 46%;
+  /* width: 46%; */
+  /* @apply w-2/5; */
   font-weight: 600;
+}
+.whole_image {
+  /* @apply w-full; */
 }

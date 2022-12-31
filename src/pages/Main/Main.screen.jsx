@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Main.module.css";
 import logo from "../../assert/PoeXa.png";
+import poet from "../../assert/2.png";
 
 function Main() {
   return (
@@ -63,16 +64,16 @@ function Main() {
             </ul>
           </div>
         </nav>
-        <div className={`${styles.whole} flex`}>
-          <div className={`${styles.hero} mt-28`}>
+        <div className={`${styles.whole} w-full flex mt-28 `}>
+          <div className={`${styles.hero} w-2/5`}>
             <h1
-              className="md:text-6xl "
+              className="md:text-6xl sm:3xl "
               style={{ color: "rgba(22,13,61,0.902)" }}
             >
               Discover highly useful Poems Resources & Tools.
             </h1>
             <p
-              className="md:text-3xl font-normal mt-3"
+              className="md:text-3xl sm:2xl font-normal mt-3"
               style={{
                 color: "rgba(22,13,61,0.902)",
               }}
@@ -81,7 +82,11 @@ function Main() {
               community.{" "}
             </p>
           </div>
-          <div></div>
+          <div
+            className={`flex justify-center items-center w-3/5 ${styles.whole_image}`}
+          >
+            <img src={poet} className="h-full" />
+          </div>
         </div>
       </div>
     </section>
