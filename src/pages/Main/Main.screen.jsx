@@ -2,6 +2,12 @@ import React from "react";
 import styles from "./Main.module.css";
 import logo from "../../assert/PoeXa.png";
 import poet from "../../assert/2.png";
+import pen from "../../assert/pen.png";
+import horror from "../../assert/horror.png";
+import comedy from "../../assert/comedy.png";
+import sad from "../../assert/sad.png";
+import quote from "../../assert/quote.png";
+import dragon from "../../assert/dragon.png";
 
 function Main() {
   return (
@@ -86,6 +92,56 @@ function Main() {
             className={`flex justify-center items-center xl:w-3/5 md:w-full sm:w-full ${styles.whole_image}`}
           >
             <img src={poet} className="h-full " />
+          </div>
+        </div>
+        <div className="cates w-full flex justify-between mt-6 ">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+            <div className="h-28 w-full flex justify-center items-center ">
+              <img className={`${styles.pen} h-full`} src={pen} />
+            </div>
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+              Poems
+            </div>
+          </div>
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+            <div className="h-28 w-full pt-3 flex justify-center items-center ">
+              <img className={`${styles.pen} h-full`} src={horror} />
+            </div>
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+              Horror
+            </div>
+          </div>
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+            <div className="h-28 w-full flex justify-center items-center ">
+              <img className={`${styles.pen} h-full`} src={comedy} />
+            </div>
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+              Comedy
+            </div>
+          </div>
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+            <div className="h-28 w-full flex justify-center items-center ">
+              <img className={`${styles.pen} h-full`} src={sad} />
+            </div>
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+              Sad
+            </div>
+          </div>
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+            <div className="h-28 w-full flex justify-center items-center ">
+              <img className={`${styles.pen} h-full`} src={quote} />
+            </div>
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+              Quote
+            </div>
+          </div>
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+            <div className="h-28 w-full flex justify-center items-center ">
+              <img className={`${styles.pen} h-full`} src={dragon} />
+            </div>
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+              Fantasy
+            </div>
           </div>
         </div>
       </div>
