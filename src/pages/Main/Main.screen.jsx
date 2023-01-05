@@ -94,52 +94,52 @@ function Main() {
             <img src={poet} className="h-full " />
           </div>
         </div>
-        <div className="cates w-full flex justify-between mt-6 ">
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+        <div className="cates w-full flex justify-between mt-6 flex-wrap justify-center items-center">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl mt-8  sm:h-[80px] w-[125px] ">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={pen} />
             </div>
-            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full ">
               Poems
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px]">
             <div className="h-28 w-full pt-3 flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={horror} />
             </div>
-            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full  ">
               Horror
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px]">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={comedy} />
             </div>
-            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full ">
               Comedy
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px]">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={sad} />
             </div>
-            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full ">
               Sad
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px] xs:sm:h-[80px] w-[125px] ">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={quote} />
             </div>
-            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full ">
               Quote
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px]">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={dragon} />
             </div>
-            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full">
+            <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full  ">
               Fantasy
             </div>
           </div>
