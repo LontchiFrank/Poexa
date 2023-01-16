@@ -12,8 +12,8 @@ import dragon from "../../assert/dragon.png";
 function Main() {
   return (
     <section className={`${styles.main_screen}`}>
-      <div className="container px-28 mx-auto md:px-16 pt-8 max-[640px]:px-12">
-        <nav className="md:flex md:justify-between md:items-center sm:items-center sm:w-auto  sm:w-full ">
+      <div className="container px-28 mx-auto md:px-12 pt-8 max-[940px]:px-12">
+        <nav className="md:flex md:justify-between md:items-center sm:items-center sm:w-auto sm:w-full ">
           <div className="flex justify-between items-center">
             <span className="text-2xl cursor-pointer ">
               <img src={logo} />
@@ -73,13 +73,13 @@ function Main() {
         <div className={`${styles.whole} w-full md:flex mt-28  `}>
           <div className={`${styles.hero} xl:w-2/5 md:w-full`}>
             <h1
-              className="text-4xl md:text-5xl  xl:text-6xl"
+              className=" xl:text-6xl  md:text-5xl sm:text-3xl max-[770px]:text-3xl"
               style={{ color: "rgba(22,13,61,0.902)" }}
             >
               Discover highly useful & amazing Poems Resources & Tools.
             </h1>
             <p
-              className="text-2xl md:text-2xl sm:text-[16px] xl:text-3xl  font-normal mt-3"
+              className="text-2xl md:text-2xl sm:text-[16px] xl:text-3xl max-[840px]:text-xl font-normal mt-3"
               style={{
                 color: "rgba(22,13,61,0.902)",
               }}
@@ -95,7 +95,7 @@ function Main() {
           </div>
         </div>
         <div className="cates w-full flex justify-between mt-6 flex-wrap justify-center items-center">
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl mt-8  sm:h-[80px] w-[125px] ">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl mt-8 ">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={pen} />
             </div>
@@ -103,7 +103,7 @@ function Main() {
               Poems
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px]">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8">
             <div className="h-28 w-full pt-3 flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={horror} />
             </div>
@@ -111,7 +111,7 @@ function Main() {
               Horror
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px]">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={comedy} />
             </div>
@@ -119,7 +119,7 @@ function Main() {
               Comedy
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px]">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={sad} />
             </div>
@@ -127,7 +127,7 @@ function Main() {
               Sad
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px] xs:sm:h-[80px] w-[125px] ">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8 ">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={quote} />
             </div>
@@ -135,7 +135,7 @@ function Main() {
               Quote
             </div>
           </div>
-          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8  sm:h-[80px] w-[125px]">
+          <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl  mt-8">
             <div className="h-28 w-full flex justify-center items-center ">
               <img className={`${styles.pen} h-full`} src={dragon} />
             </div>
