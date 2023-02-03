@@ -8,8 +8,12 @@ import comedy from "../../assert/comedy.png";
 import sad from "../../assert/sad.png";
 import quote from "../../assert/quote.png";
 import dragon from "../../assert/dragon.png";
+import { useSelector, useDispatch } from "react-redux";
 
 function Main() {
+  const poem = useSelector((state) => state.poems.data);
+  const dispatch = useDispatch();
+
   return (
     <section className={`${styles.main_screen}`}>
       <div className="container px-28 mx-auto md:px-12 pt-8 max-[940px]:px-12">
