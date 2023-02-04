@@ -3,6 +3,6 @@ import { poemSlide } from "../features/poemSlice";
 
 export const store = configureStore({
   reducer: {
-    poems: poemSlide,
+    poems: poemSlide.reducer,
   },
 });
