@@ -15,7 +15,7 @@ export const poemSlide = createSlice({
   },
 });
 
-export const getPoemAsync = () => async (dispatch) => {
+export const getPoemAsync = (data) => async (dispatch) => {
   try {
     const response = await axios.get(`${API_URL}`);
     dispatch(getPoem(response.data));

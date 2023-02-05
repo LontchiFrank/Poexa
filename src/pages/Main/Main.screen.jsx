@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Main.module.css";
 import logo from "../../assert/PoeXa.png";
 import poet from "../../assert/2.png";
@@ -10,12 +10,19 @@ import quote from "../../assert/quote.png";
 import dragon from "../../assert/dragon.png";
 import { useSelector, useDispatch } from "react-redux";
 import { getPoemAsync } from "../../features/poemSlice";
+import PoemCard from "../../components/poenCard/PoemCard.component";
 
 function Main() {
-  const poem = useSelector((state) => state.poems.data);
   const dispatch = useDispatch();
-  // const posts = dispatch(getPoemAsync());
+  const dataFetchedRef = useRef(false);
+  useEffect(() => {
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+    dispatch(getPoemAsync());
+  }, []);
+  const poem = useSelector((state) => state.poems.data);
   console.log(poem);
+
   return (
     <section className={`${styles.main_screen}`}>
       <div className="container px-28 mx-auto md:px-12 pt-8 max-[940px]:px-12">
@@ -148,6 +155,14 @@ function Main() {
             <div className="inspiration text-center text-xl text-blue-900 h-1/2 w-full  ">
               Fantasy
             </div>
+          </div>
+        </div>
+        <div>
+          <div className="w-full py-20">
+            <p className={`${styles.text} py-16 text-3xl font-semibold `}>
+              Latest Poems
+            </p>
+            <PoemCard />
           </div>
         </div>
       </div>
