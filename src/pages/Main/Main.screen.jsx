@@ -11,6 +11,7 @@ import dragon from "../../assert/dragon.png";
 import { useSelector, useDispatch } from "react-redux";
 import { getPoemAsync } from "../../features/poemSlice";
 import PoemCard from "../../components/poenCard/PoemCard.component";
+import Footer from "../../components/footer/Footer.component";
 
 function Main() {
   const dispatch = useDispatch();
@@ -159,17 +160,50 @@ function Main() {
         </div>
         <div>
           <div className="w-full py-20">
-            <p className={`${styles.text} py-16 text-3xl font-semibold `}>
+            <p className={`${styles.text} py-16 text-5xl font-semibold `}>
               Latest Poems
             </p>
-            <div className="w-full flex flex-wrap grid gap-x-8 gap-y-8 grid-cols-3">
+            <div className="w-full flex flex-wrap grid gap-x-8 gap-y-8 grid-cols-3 pb-24">
               {poems.map((item, key) => (
                 <PoemCard item={item} key={key} />
               ))}
             </div>
+            <div className="w-full flex justify-center items-center">
+              <button
+                type="button"
+                class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-5 text-center mr-2 mb-2"
+              >
+                Browse latest poems
+              </button>
+            </div>
+            <div className="py-48 flex">
+              <div className="w-1/2">
+                <p className={`${styles.text} text-5xl font-bold pb-8`}>
+                  Artificial Intelligence coming soon on Poexa!
+                </p>
+                <p className={`${styles.text} text-2xl`}>
+                  This will help revolutionise the content of your app. Its
+                  going to rate the content of your work and link you to great
+                  poet and writers, which will aid alot of new poet or talented
+                  writes to achieve more by having review from the best.
+                </p>
+              </div>
+              <div className="w-1/2">
+                <div className={`${styles.vid}`}>
+                  <iframe
+                    src="https://share.synthesia.io/embeds/videos/c0f67401-59c9-4e7c-a7ed-23852e1191f0"
+                    loading="lazy"
+                    title="Synthesia video player - Your AI video"
+                    allow="encrypted-media; fullscreen;"
+                    className={`${styles.vidSection}`}
+                  ></iframe>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

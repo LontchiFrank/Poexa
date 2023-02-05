@@ -1,0 +1,115 @@
+.footerWrapper {
+  background-color: #160d3d;
+}
+
+.footerSubWrapper {
+  @apply px-5 max-w-[1450px] mx-auto;
+  /* @apply md:grid-cols-2 md:py-16 md:px-12 md:gap-7;
+  @apply lg:grid-cols-4 lg:py-20 lg:px-16 lg:gap-10; */
+}
+
+.footerSection {
+}
+
+.footerLinksTitle {
+  @apply relative text-xl font-bold flex flex-row items-center justify-start;
+}
+
+.subMenu {
+  @apply absolute top-4 z-20 flex flex-col top-0 w-32 invisible h-auto opacity-0 shadow-none drop-shadow-none p-2 rounded duration-500 ease-in-out;
+  @apply md:w-44;
+  @apply lg:w-52;
+}
+
+.subHover:hover .subMenu {
+  @apply visible h-auto w-32 top-8 opacity-100 shadow-md;
+  @apply md:w-44;
+  @apply lg:w-52;
+}
+
+.subLinks {
+  @apply relative mx-2 text-sm py-1 flex flex-row justify-between items-center duration-300 ease-in-out;
+}
+
+.hoverLinks {
+  @apply flex flex-row justify-between items-center w-full;
+}
+
+.subMenu1 {
+  @apply absolute ml-6 left-3/4 -top-2 z-20 flex flex-col top-0 w-32 invisible h-auto opacity-0 shadow-none drop-shadow-none p-2 rounded duration-500 ease-in-out;
+  @apply md:w-44 md:left-2/3 md:ml-12;
+  @apply lg:w-52 lg:left-3/4;
+}
+
+.subHover1:hover .subMenu1 {
+  @apply visible h-auto w-32 ml-6 left-3/4 -top-2 opacity-100 shadow-md;
+  @apply md:w-44 md:left-2/3 md:ml-12;
+  @apply lg:w-52 lg:left-3/4;
+}
+
+.footerLinksWrapper {
+  @apply flex flex-col justify-center items-start mt-8;
+}
+
+.footerLinks {
+  @apply duration-300 ease-in-out font-semibold text-sm mb-2.5;
+}
+
+.footerTitle {
+  @apply font-bold text-6xl mb-8;
+  @apply lg:text-[42px];
+}
+
+.footerText {
+  @apply font-bold text-sm mb-2;
+}
+
+.socialWrapper {
+  @apply flex flex-row flex-wrap justify-start;
+  @apply xl:flex-nowrap;
+}
+
+.helpWrapper {
+  @apply rounded-2xl flex flex-col justify-center items-center w-full px-9 py-7;
+}
+
+.helpIconWrapper {
+  @apply w-full mb-11;
+}
+
+.helpIcon {
+  @apply text-7xl mx-auto;
+}
+
+.helpTitle {
+  @apply text-lg font-bold text-center mt-1;
+}
+
+.helpContact {
+  @apply mt-3 font-normal;
+}
+
+.helpEmailWrapper {
+  @apply flex flex-row justify-center items-center mt-1.5;
+}
+
+.helpEmail {
+  @apply text-base font-semibold ml-2.5 mb-0.5;
+}
+
+.footerBottom {
+  @apply py-10 px-5 grid gap-6 max-w-[1450px] mx-auto;
+  @apply md:gap-6 md:px-12;
+  @apply lg:grid-cols-3 lg:h-[120px] lg:gap-10 lg:px-16 lg:py-12;
+}
+
+.footerBottomLinks {
+  @apply duration-300 ease-in-out text-sm font-semibold mr-3 py-2;
+  @apply md:mr-4;
+  @apply lg:mr-8;
+}
+
+.footerCopyright {
+  @apply font-bold text-xs whitespace-nowrap;
+  @apply md:text-sm md:whitespace-normal;
+}
