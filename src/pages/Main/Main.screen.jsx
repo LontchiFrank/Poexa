@@ -20,8 +20,8 @@ function Main() {
     dataFetchedRef.current = true;
     dispatch(getPoemAsync());
   }, []);
-  const poem = useSelector((state) => state.poems.data);
-  console.log(poem);
+  const poems = useSelector((state) => state.poems.data);
+  console.log(poems);
 
   return (
     <section className={`${styles.main_screen}`}>
@@ -162,7 +162,11 @@ function Main() {
             <p className={`${styles.text} py-16 text-3xl font-semibold `}>
               Latest Poems
             </p>
-            <PoemCard />
+            <div className="w-full flex flex-wrap grid gap-x-8 gap-y-8 grid-cols-3">
+              {poems.map((item, key) => (
+                <PoemCard item={item} key={key} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export const poemSlide = createSlice({
   },
   reducers: {
     getPoem: (state, action) => {
-      state.data = [action.payload];
+      state.data = action.payload;
     },
   },
 });

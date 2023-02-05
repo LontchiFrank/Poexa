@@ -24,4 +24,9 @@
     rgba(251, 250, 255, 0.7)
   );
   height: 426px; */
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 100%, 0.7),
+    rgba(251, 250, 255, 0.7)
+  );
 }
