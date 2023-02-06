@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPoemAsync } from "../../features/poemSlice";
 import PoemCard from "../../components/poenCard/PoemCard.component";
 import Wrapper from "../../components/Wrapper/Wrapper.component";
+import loader from "../../assert/load1.svg";
 import { FaArrowRight } from "react-icons/fa";
 
 function Main() {
@@ -23,6 +24,7 @@ function Main() {
   }, []);
   const poems = useSelector((state) => state.poems.data);
   console.log(poems);
+  const arr = [];
 
   return (
     <section className={`${styles.main_screen}`}>
@@ -109,10 +111,27 @@ function Main() {
               >
                 Latest Poems
               </p>
-              <div className={`${styles.poems} `}>
-                {poems.map((item, key) => (
-                  <PoemCard item={item} key={key} />
-                ))}
+              <div>
+                {poems.length == 0 ? (
+                  <div
+                    className="grid grid-cols-1"
+                    style={{
+                      width: "100%",
+                      // height: "100vh",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img src={loader} />
+                  </div>
+                ) : (
+                  <div className={`${styles.poems} `}>
+                    {poems.map((item, key) => (
+                      <PoemCard item={item} key={key} />
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="w-full flex justify-center items-center pt-20">
                 <button
