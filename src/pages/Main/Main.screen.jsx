@@ -10,8 +10,8 @@ import dragon from "../../assert/dragon.png";
 import { useSelector, useDispatch } from "react-redux";
 import { getPoemAsync } from "../../features/poemSlice";
 import PoemCard from "../../components/poenCard/PoemCard.component";
-import Footer from "../../components/footer/Footer.component";
 import Wrapper from "../../components/Wrapper/Wrapper.component";
+import { FaArrowRight } from "react-icons/fa";
 
 function Main() {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ function Main() {
               <img src={poet} className="h-full " />
             </div>
           </div>
-          <div className="cates w-full flex justify-center mt-6 grid xl:grid-cols-6 lg:grid-cols-4 ">
+          <div className="cates w-full flex justify-center items-center flex-wrap gap-3 xl:gap-8 mt-6 ">
             <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl mt-8 ">
               <div className="h-28 w-full flex justify-center items-center ">
                 <img className={`${styles.pen} h-full`} src={pen} />
@@ -109,20 +109,20 @@ function Main() {
               >
                 Latest Poems
               </p>
-              <div className={`${styles.poems} lg:grid grid-rows-4`}>
+              <div className={`${styles.poems} `}>
                 {poems.map((item, key) => (
                   <PoemCard item={item} key={key} />
                 ))}
               </div>
-              <div className="w-full flex justify-center items-center">
+              <div className="w-full flex justify-center items-center pt-20">
                 <button
                   type="button"
                   class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-5 text-center mr-2 mb-2"
                 >
-                  Browse latest poems
+                  <p> Browse latest poems </p>
                 </button>
               </div>
-              <div className="py-48 flex md:flex-col sm:flex-col ">
+              <div className="py-48 flex xl:flex-row md:flex-col sm:flex-col ">
                 <div className="w-1/2 md:w-full sm:w-full">
                   <p
                     className={`${styles.text} xl:text-5xl md:text-3xl sm:text-2xl font-bold pb-8`}
