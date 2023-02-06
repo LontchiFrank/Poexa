@@ -1,6 +1,6 @@
 .main_screen {
   width: 100%;
-  height: 330vh;
+  height: 100%;
   background: url(../../assert/coloors.jpg);
   background-position: center;
   background-size: cover;
@@ -65,4 +65,12 @@
   padding: 0;
   margin: 0;
   overflow: hidden;
+}
+.poems {
+  @apply w-full flex flex-wrap grid grid xl:grid-cols-3 gap-x-8 gap-y-8 pb-24 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1;
+  /* @apply md:grid grid-cols-2;
+  @apply sm:grid grid-cols-1 gap-y-8;
+  @apply lg:grid grid-cols-2;
+  @apply xl:grid grid-cols-3;
+  @apply 2xl:; */
 }
