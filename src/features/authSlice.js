@@ -10,7 +10,7 @@ const initialState = {
   error: null,
 };
 
-const signUpUser = createAsyncThunk("registeruser", async (data) => {
+export const signUpUser = createAsyncThunk("registeruser", async (data) => {
   try {
     const config = {
       headers: {
@@ -20,14 +20,34 @@ const signUpUser = createAsyncThunk("registeruser", async (data) => {
     const body = JSON.stringify(data);
     const res = await axios.post(`${API_URL}/register`, body, config);
     return res.json();
-  } catch (error) {}
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      return rejectWithValue(error.response.data.message);
+    } else {
+      return rejectWithValue(error.message);
+    }
+  }
 });
 
 export const authSlide = createSlice({
   name: "",
   initialState,
   reducers: {},
-  extraReducers: {},
+  extraReducers: {
+    [signUpUser.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [signUpUser.fulfilled]: (state, { payload: { error, msg } }) => {
+      state.loading = false;
+      if (error) {
+        state.error = error;
+      } else {
+      }
+    },
+    [signUpUser.rejected]: (state, action) => {
+      state.loading = true;
+    },
+  },
 });
 
 export default authSlide.reducer;
