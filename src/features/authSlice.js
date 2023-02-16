@@ -17,20 +17,20 @@ export const signUpUser = createAsyncThunk("registeruser", async (data) => {
         "Content-Type": "application/json",
       },
     };
-    const body = JSON.stringify(data);
-    const res = await axios.post(`${API_URL}/register`, body, config);
+    // const body = JSON.stringify(data);
+    const res = await axios.post(`${API_URL}/signup`, data, config);
     return res.json();
   } catch (error) {
     if (error.response && error.response.data.message) {
-      return rejectWithValue(error.response.data.message);
+      return error.response.data.message;
     } else {
-      return rejectWithValue(error.message);
+      return error.message;
     }
   }
 });
 
 export const authSlide = createSlice({
-  name: "",
+  name: "auth",
   initialState,
   reducers: {},
   extraReducers: {

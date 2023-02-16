@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Poexa from "../../assert/PoeXa.png";
 import { useDispatch } from "react-redux";
-import { signUpUser } from "../redux/authSlice";
+import { signUpUser } from "../../features/authSlice";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -23,8 +23,11 @@ function Register() {
     e.preventDefault();
     if (password !== password2) {
       alert("Password do not match");
+    } else {
+      const newData = { name, email, password };
+      const sign = dispatch(signUpUser(newData));
+      console.log(sign);
     }
-    dispatch(signUpUser(formData));
   };
   return (
     <section class="bg-violet-50 dark:bg-gray-900">
@@ -46,7 +49,11 @@ function Register() {
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Create and account
             </h1>
-            <form class="space-y-4 md:space-y-6" action="#">
+            <form
+              onSubmit={(e) => handleSubmit(e)}
+              class="space-y-4 md:space-y-6"
+              action="#"
+            >
               <div>
                 <label
                   for="name"
@@ -154,7 +161,7 @@ function Register() {
                 <p class="text-lg mb-0 mr-4 text-gray-700">Sign in with</p>
                 <div className="flex">
                   <button
-                    type="button"
+                    type="submit"
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                     class="inline-block p-3 bg-violet-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-1"
