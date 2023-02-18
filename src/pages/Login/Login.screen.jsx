@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Poexa from "../../assert/PoeXa.png";
+import { signInUser } from "../../features/authSlice";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -7,6 +9,8 @@ function Login() {
     password: "",
   });
   const { email, password } = formData;
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -15,6 +19,7 @@ function Login() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(signInUser(formData));
   };
 
   return (
