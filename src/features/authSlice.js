@@ -4,7 +4,7 @@ import axios from "axios";
 const API_URL = "http://localhost:8000/api/user";
 
 const initialState = {
-  msg: "",
+  authenticate: false,
   userInfo: "",
   userToken: "",
   loading: false,
@@ -30,17 +30,20 @@ export const signUpUser = createAsyncThunk("registeruser", async (data) => {
   }
 });
 
-export const signInUser = createAsyncThunk("loginuser", async (data) => {
+export const signInUser = createAsyncThunk("auth/login", async (data) => {
   try {
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    // const body = JSON.stringify(data);
-    const res = await axios.post(`${API_URL}/login`, data, config);
+    const body = JSON.stringify(data);
+    const res = await axios.post(`${API_URL}/login`, body, config);
     console.log(res, "res");
-    return await res;
+    const result = await res;
+    // localStorage.setItem("userToken", res.data.token);
+    console.log(result);
+    return result;
   } catch (error) {
     if (error.response && error.response.data.message) {
       return error.response.data.message;
@@ -53,36 +56,23 @@ export const signInUser = createAsyncThunk("loginuser", async (data) => {
 export const authSlide = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    addToken: (state, action) => {
-      state.userToken = localStorage.getItem("token");
-    },
-    addUser: (state, action) => {
-      state.userInfo = localStorage.getItem("user");
-    },
-    logout: (state, action) => {
-      state.userToken = null;
-      localStorage.clear();
-    },
-  },
+  reducers: {},
   extraReducers: {
     //*************Login**************/
     [signInUser.pending]: (state) => {
       state.loading = true;
+      state.authenticate = false;
       state.error = null;
     },
-    [signInUser.fulfilled]: (
-      state,
-      { payload: { error, msg, token, user } }
-    ) => {
+    [signInUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.msg = msg;
-      state.userToken = token;
-      state.userInfo = user;
+      state.authenticate = true;
+      state.userToken = payload.data.token;
+      state.userInfo = payload.data.user;
 
-      localStorage.setItem("msg", msg);
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", JSON.stringify(token));
+      // localStorage.setItem("msg", msg);
+      localStorage.setItem("user", JSON.stringify(state.userInfo));
+      localStorage.setItem("token", JSON.stringify(state.userToken));
     },
     [signInUser.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -109,4 +99,4 @@ export const authSlide = createSlice({
 });
 export const { addToken, addUser, logout } = authSlide.actions;
 
-export default authSlide.reducer;
+export default authSlide;
