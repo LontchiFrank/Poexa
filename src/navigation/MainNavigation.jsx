@@ -5,6 +5,7 @@ import { RouteLoader } from "../components";
 const Main = lazy(() => import("../pages/Main/Main.screen"));
 const Login = lazy(() => import("../pages/Login/Login.screen"));
 const Register = lazy(() => import("../pages/Register/Register.screen"));
+const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard.screen"));
 
 function MainNavigation() {
   return (
@@ -14,6 +15,7 @@ function MainNavigation() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Suspense>
     </Router>

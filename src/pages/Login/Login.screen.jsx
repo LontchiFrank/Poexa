@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Poexa from "../../assert/PoeXa.png";
 import { signInUser } from "../../features/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Login() {
+  const [authenticated, setauthenticated] = useState(null);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+  const auth = useSelector((data) => data.user?.authenticate);
+  console.log(auth);
+  useEffect(() => {
+    if (auth) {
+      setauthenticated(auth);
+    }
+  }, []);
   const { email, password } = formData;
   const dispatch = useDispatch();
 
@@ -19,7 +30,15 @@ function Login() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(signInUser(formData));
+
+    if (authenticated) {
+      navigate("/dashboard");
+    } else {
+      // <Navigate replace to="/login" />;
+      navigate("/login");
+    }
   };
 
   return (
