@@ -3,22 +3,17 @@ import Poexa from "../../assert/PoeXa.png";
 import { signInUser } from "../../features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 
 function Login() {
-  const [authenticated, setauthenticated] = useState(null);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
   const auth = useSelector((data) => data.user?.authenticate);
-  console.log(auth);
-  useEffect(() => {
-    if (auth) {
-      setauthenticated(auth);
-    }
-  }, []);
+  localStorage.setItem("auth", auth);
+  const getAuth = localStorage.getItem("auth");
+  console.log(getAuth);
   const { email, password } = formData;
   const dispatch = useDispatch();
 
@@ -33,11 +28,13 @@ function Login() {
 
     dispatch(signInUser(formData));
 
-    if (authenticated) {
-      navigate("/dashboard");
+    if (getAuth) {
+      window.location.replace("/dashboard");
+      // navigate("/dashboard");
     } else {
       // <Navigate replace to="/login" />;
-      navigate("/login");
+      window.location.replace("/login");
+      // navigate("/login");
     }
   };
 

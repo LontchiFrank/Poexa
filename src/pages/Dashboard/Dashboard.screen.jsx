@@ -3,11 +3,12 @@ import { useSelector } from "react-redux";
 
 function Dashboard() {
   const [authenticated, setauthenticated] = useState(null);
-  const auth = useSelector((data) => data.user?.authenticate);
-  console.log(auth);
+  //   const auth = useSelector((data) => data.user?.authenticate);
+  //   console.log(auth);
+  const getAuth = localStorage.getItem("auth");
   useEffect(() => {
-    if (auth) {
-      setauthenticated(auth);
+    if (getAuth) {
+      setauthenticated(getAuth);
     }
   }, [authenticated]);
 
