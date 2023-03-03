@@ -1,12 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+// import { createPoemAsync } from "./poemSlice";
 
 const API_URL = "http://localhost:8000/api/user";
+const API_URL_POEMS = "http://localhost:8000/api/poem/";
 
 const initialState = {
   authenticate: null,
   userInfo: "",
   userToken: "",
+  poems: [],
   loading: false,
   error: null,
 };
@@ -56,7 +60,11 @@ export const signInUser = createAsyncThunk("auth/login", async (data) => {
 export const authSlide = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    addPoem: (state, action) => {
+      state.poems = [...action.payload];
+    },
+  },
   extraReducers: {
     //*************Login**************/
     [signInUser.pending]: (state) => {
@@ -97,6 +105,16 @@ export const authSlide = createSlice({
     },
   },
 });
-export const { addToken, addUser, logout } = authSlide.actions;
+
+export const createPoemAsync = (data) => async (dispatch) => {
+  try {
+    const response = await axios.post(`${API_URL_POEMS}new-poem`, data);
+    return dispatch(addPoem(response.json()));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const { addToken, addUser, logout, addPoem } = authSlide.actions;
 
 export default authSlide;

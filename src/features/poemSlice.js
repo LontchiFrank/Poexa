@@ -12,6 +12,9 @@ export const poemSlide = createSlice({
     getPoem: (state, action) => {
       state.data = action.payload;
     },
+    createPoem: (state, action) => {
+      state.data = [...action.payload];
+    },
   },
 });
 
