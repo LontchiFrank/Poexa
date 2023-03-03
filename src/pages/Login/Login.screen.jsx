@@ -14,6 +14,9 @@ function Login() {
   const auth = useSelector((data) => data.user?.authenticate);
   localStorage.setItem("auth", auth);
   const getAuth = localStorage.getItem("auth");
+  const [show, setShow] = useState(null);
+
+  const [alert, setAlert] = useState(true);
   console.log(getAuth);
   const { email, password } = formData;
   const dispatch = useDispatch();
@@ -28,6 +31,11 @@ function Login() {
     e.preventDefault();
 
     dispatch(signInUser(formData));
+
+    setTimeout(() => {
+      setAlert(false);
+      setShow(true);
+    }, 3000);
     // if (getAuth) {
     //   <Alert color="bg-success-100 " />;
     //   // navigate("/dashboard");
@@ -40,15 +48,15 @@ function Login() {
 
   return (
     <div>
+      {show ? (
+        <Alert color="bg-success-100 " title="Login Success!" />
+      ) : (
+        <Alert color="bg-danger-100 " title="Login Failed!" />
+      )}
       {auth ? (
         window.location.replace("/dashboard")
       ) : (
         <section class="bg-violet-50 dark:bg-gray-900">
-          {auth ? (
-            <Alert color="bg-success-100 " />
-          ) : (
-            <Alert color="bg-danger-100 " />
-          )}
           <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a
               href="#"
