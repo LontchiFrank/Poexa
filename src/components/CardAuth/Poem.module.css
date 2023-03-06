@@ -1,0 +1,32 @@
+.card {
+  /* align-items: flex-start;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(251, 250, 255, 0.7) 100%
+    );
+    border-radius: 20px;
+    border: 2px solid black;
+    box-shadow: 0px 15px 30px #160d3d0a, inset 1px 1px 1px #ffffff80;
+    display: flex;
+    flex-direction: column;
+    min-height: 426px;
+    width: 298px; */
+  /* position: absolute;
+    width: calc(100% - 1014px);
+    top: 0;
+    right: 338px;
+    left: 676px;
+    border-radius: 20px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.7),
+      rgba(251, 250, 255, 0.7)
+    );
+    height: 426px; */
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 100%, 0.7),
+    rgba(251, 250, 255, 0.7)
+  );
+}

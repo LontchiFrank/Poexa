@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Poexa from "../../assert/PoeXa.png";
-import PoemCard from "../../components/poenCard/PoemCard.component";
+import PoemCard from "../../components/CardAuth/PoemCard.component";
 import styles from "./Dashboard.module.css";
 import { getPoemAsync } from "../../features/poemSlice";
 
