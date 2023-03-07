@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Poem.module.css";
+import { FiHeart } from "react-icons/fi";
 
-function PoemCard({ item }) {
+function PoemCard({ item, on }) {
   return (
     <div
       class={`${styles.card} max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl`}
@@ -29,14 +30,19 @@ function PoemCard({ item }) {
             <p className="text-violet-800">View</p>
           </div> */}
 
-          <button
-            type="button"
-            class="inline-block rounded bg-blue-500 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-            data-te-ripple-init
-            data-te-ripple-color="light"
-          >
-            View
-          </button>
+          <div className="flex justify-between">
+            <button
+              type="button"
+              // className="rounded border-2 border-primary"
+              class="inline-block rounded border-2 border-indigo-300 px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+              data-te-ripple-init
+            >
+              View
+            </button>
+            {/* <div> */}
+            <FiHeart style={{ fontSize: "32px" }} />
+            {/* </div> */}
+          </div>
         </div>
       </div>
     </div>
