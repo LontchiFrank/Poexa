@@ -19,6 +19,15 @@ function Dashboard() {
     dispatch(getPoemAsync());
   }, []);
 
+  const handleClick = (num) => {
+    console.log(num);
+    setShow(num);
+  };
+  const handleClickClose = (num) => {
+    setShow(num);
+  };
+
+  console.log(show);
   return (
     <section className={`${styles.main}`}>
       <Modal show={show} />
@@ -290,7 +299,13 @@ function Dashboard() {
         <div class="p-4 rounded-lg dark:border-gray-700 mt-14">
           <div className={`${styles.poems} `}>
             {poems.map((item, key) => (
-              <PoemCard item={item} key={key} on={show} />
+              <PoemCard
+                item={item}
+                key={key}
+                on={show}
+                handleClick={handleClick}
+                handleClickClose={handleClickClose}
+              />
             ))}
           </div>
         </div>

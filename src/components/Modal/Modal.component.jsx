@@ -1,187 +1,105 @@
 import React from "react";
 
-function Modal() {
+function Modal({ show }) {
   return (
     <div>
-      <div class="space-y-2">
-        <button
-          type="button"
-          class="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-          data-te-toggle="modal"
-          data-te-target="#exampleModalCenter"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-        >
-          Vertically centered modal
-        </button>
-        <button
-          type="button"
-          class="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-          data-te-toggle="modal"
-          data-te-target="#exampleModalCenteredScrollable"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-        >
-          Vertically centered scrollable modal
-        </button>
-      </div>
-
-      <div
-        data-te-modal-init
-        class="fixed top-0 left-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-        id="exampleModalCenter"
-        tabindex="-1"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-modal="true"
-        role="dialog"
-      >
-        <div
-          data-te-modal-dialog-ref
-          class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]"
-        >
-          <div class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
-            <div class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
-              <h5
-                class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
-                id="exampleModalScrollableLabel"
-              >
-                Modal title
-              </h5>
-              <button
-                type="button"
-                class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-                data-te-modal-dismiss
-                aria-label="Close"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div class="relative p-4">
-              <p>This is a vertically centered modal.</p>
-            </div>
-            <div class="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
-              <button
-                type="button"
-                class="inline-block rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
-                data-te-modal-dismiss
-                data-te-ripple-init
-                data-te-ripple-color="light"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="ml-1 inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-                data-te-ripple-init
-                data-te-ripple-color="light"
-              >
-                Save changes
-              </button>
+      {show ? (
+        <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
+          <div className="bg-white p-2 rounded w-1/2">
+            <div
+              id="large-modal"
+              tabindex="-1"
+              // class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full"
+            >
+              <div class="relative w-full h-full  md:h-auto ">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 ">
+                  <div class="flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+                      Large modal
+                    </h3>
+                    <button
+                      type="button"
+                      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                      data-modal-hide="large-modal"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      <span class="sr-only">Close modal</span>
+                    </button>
+                  </div>
+                  <div class="p-6 space-y-6">
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                      With less than a month to go before the European Union
+                      enacts new consumer privacy laws for its citizens,
+                      companies around the world are updating their terms of
+                      service agreements to comply.
+                    </p>
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                      The European Union’s General Data Protection Regulation
+                      (G.D.P.R.) goes into effect on May 25 and is meant to
+                      ensure a common set of data rights in the European Union.
+                      It requires organizations to notify users as soon as
+                      possible of high-risk data breaches that could personally
+                      affect them.
+                    </p>
+                  </div>
+                  <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button
+                      data-modal-hide="large-modal"
+                      type="button"
+                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      I accept
+                    </button>
+                    <button
+                      data-modal-hide="large-modal"
+                      type="button"
+                      class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                    >
+                      Decline
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+          {/* <div className="bg-white p-2 rounded w-72">
+            <h1 className="font-semibold text-center text-xl text-gray-700">
+              Welcome back
+            </h1>
+            <p className="text-center text-gray-700 mb-5">Sign in</p>
 
-      <div
-        data-te-modal-init
-        class="fixed top-0 left-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-        id="exampleModalCenteredScrollable"
-        tabindex="-1"
-        aria-labelledby="exampleModalCenteredScrollable"
-        aria-modal="true"
-        role="dialog"
-      >
-        <div
-          data-te-modal-dialog-ref
-          class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]"
-        >
-          <div class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
-            <div class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
-              <h5
-                class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
-                id="exampleModalCenteredScrollableLabel"
-              >
-                Modal title
-              </h5>
-              <button
-                type="button"
-                class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-                data-te-modal-dismiss
-                aria-label="Close"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+            <div className="flex flex-col">
+              <input
+                type="text"
+                className="border border-gray-700 p-2 rounded mb-5"
+                placeholder="email@example.com"
+              />
+              <input
+                type="text"
+                className="border border-gray-700 p-2 rounded mb-5"
+                placeholder="********"
+              />
+            </div>
+            <div className="text-center">
+              <button className="px-5 py-2 bg-gray-700 text-white rounded">
+                Sign in
               </button>
             </div>
-            <div class="relative p-4">
-              <p>
-                This is some placeholder content to show a vertically centered
-                modal. We've added some extra copy here to show how vertically
-                centering the modal works when combined with scrollable modals.
-                We also use some repeated line breaks to quickly extend the
-                height of the content, thereby triggering the scrolling. When
-                content becomes longer than the predefined max-height of modal,
-                content will be cropped and scrollable within the modal.
-              </p>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <p>Just like that.</p>
-            </div>
-            <div class="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
-              <button
-                type="button"
-                class="inline-block rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
-                data-te-modal-dismiss
-                data-te-ripple-init
-                data-te-ripple-color="light"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="ml-1 inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-                data-te-ripple-init
-                data-te-ripple-color="light"
-              >
-                Save changes
-              </button>
-            </div>
-          </div>
+          </div> */}
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }
