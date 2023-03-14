@@ -1,6 +1,6 @@
 import React from "react";
 
-function Modal({ show, handleClickClose }) {
+function Modal({ show, handleClickClose, col }) {
   return (
     <div>
       {show ? (
@@ -15,7 +15,7 @@ function Modal({ show, handleClickClose }) {
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 ">
                   <div class="flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-medium text-gray-900 dark:text-white">
-                      Large modal
+                      {col.title}
                     </h3>
                     <button
                       type="button"
@@ -39,21 +39,28 @@ function Modal({ show, handleClickClose }) {
                       <span class="sr-only">Close modal</span>
                     </button>
                   </div>
-                  <div class="p-6 space-y-6">
+                  <div class="">
+                    <div class="md:flex">
+                      <div class="md:shrink-0">
+                        <img
+                          class="h-48 w-full object-cover md:h-full md:w-48"
+                          src={col.image}
+                          alt="Modern building architecture"
+                        />
+                      </div>
+                      <div class="px-8 pt-8 pb-2">
+                        <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                          {col.category}
+                        </div>
+                        <p class="mt-2 text-slate-500 mb-8">{col.desc}</p>
+                      </div>
+                    </div>
+                    {/* <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                      {col.category}
+                    </div>
                     <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                      With less than a month to go before the European Union
-                      enacts new consumer privacy laws for its citizens,
-                      companies around the world are updating their terms of
-                      service agreements to comply.
-                    </p>
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                      The European Union’s General Data Protection Regulation
-                      (G.D.P.R.) goes into effect on May 25 and is meant to
-                      ensure a common set of data rights in the European Union.
-                      It requires organizations to notify users as soon as
-                      possible of high-risk data breaches that could personally
-                      affect them.
-                    </p>
+                      {col.desc}
+                    </p> */}
                   </div>
                   <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button
