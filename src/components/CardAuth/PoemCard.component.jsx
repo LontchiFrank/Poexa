@@ -15,7 +15,7 @@ function PoemCard({ item, on }) {
             alt="Modern building architecture"
           />
         </div>
-        <div class="p-8">
+        <div class="px-8 pt-8 pb-2">
           <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
             {item.category}
           </div>
@@ -40,7 +40,7 @@ function PoemCard({ item, on }) {
               View
             </button>
             {/* <div> */}
-            <FiHeart style={{ fontSize: "32px" }} />
+            <FiHeart style={{ fontSize: "20px" }} />
             {/* </div> */}
           </div>
         </div>
