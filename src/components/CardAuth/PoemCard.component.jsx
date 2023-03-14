@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Poem.module.css";
 import { FiHeart } from "react-icons/fi";
+import LinesEllipsis from "react-lines-ellipsis";
 
 function PoemCard({ item, on, handleClick }) {
   const [show, setShow] = useState(false);
@@ -30,7 +31,15 @@ function PoemCard({ item, on, handleClick }) {
           >
             {item.title}
           </a>
-          <p class="mt-2 text-slate-500 mb-8">{item.desc}</p>
+          <p class="mt-2 text-slate-500 mb-8">
+            <LinesEllipsis
+              text={item.desc}
+              maxLine="2"
+              ellipsis="..."
+              trimRight
+              basedOn="letters"
+            />
+          </p>
 
           <div className="flex justify-between">
             <button
