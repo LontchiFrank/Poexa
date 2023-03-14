@@ -9,6 +9,7 @@ import Modal from "../../components/Modal/Modal.component";
 function Dashboard() {
   const [authenticated, setauthenticated] = useState(null);
   const [show, setShow] = useState(false);
+  const [collect, setCollect] = useState();
   const auth = useSelector((data) => data.user?.authenticate);
   const poems = useSelector((state) => state.poems.data);
   const dataFetchedRef = useRef(false);
@@ -19,9 +20,11 @@ function Dashboard() {
     dispatch(getPoemAsync());
   }, []);
 
-  const handleClick = (num) => {
+  const handleClick = (num, col) => {
     console.log(num);
+    console.log(col);
     setShow(num);
+    setCollect(col);
   };
   const handleClickClose = (num) => {
     setShow(num);
@@ -30,7 +33,7 @@ function Dashboard() {
   console.log(show);
   return (
     <section className={`${styles.main}`}>
-      <Modal show={show} handleClickClose={handleClickClose} />
+      <Modal show={show} handleClickClose={handleClickClose} col={collect} />
       <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
