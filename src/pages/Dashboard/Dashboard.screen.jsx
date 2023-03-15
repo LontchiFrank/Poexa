@@ -9,7 +9,7 @@ import Modal from "../../components/Modal/Modal.component";
 function Dashboard() {
   const [authenticated, setauthenticated] = useState(null);
   const [show, setShow] = useState(false);
-  const [showDrawer, setShowDrawer] = useState(false);
+  const [page, setPage] = useState();
 
   const [collect, setCollect] = useState();
   const auth = useSelector((data) => data.user?.authenticate);
@@ -257,3 +257,14 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+// const part = () => {
+//   let card = null;
+//   switch (key) {
+//     case value:
+//       break;
+
+//     default:
+//       break;
+//   }
+// };
