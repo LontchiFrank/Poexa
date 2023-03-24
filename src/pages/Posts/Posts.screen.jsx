@@ -1,42 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Poexa from "../../assert/PoeXa.png";
-import PoemCard from "../../components/CardAuth/PoemCard.component";
-import styles from "./Dashboard.module.css";
-import { getPoemAsync } from "../../features/poemSlice";
-import Modal from "../../components/Modal/Modal.component";
-import Posts from "../Posts/Posts.screen";
+import React from "react";
+import styles from "./Posts.module.css";
 import { Link } from "react-router-dom";
+import Poexa from "../../assert/PoeXa.png";
 
-function Dashboard() {
-  const [authenticated, setauthenticated] = useState(null);
-  const [show, setShow] = useState(false);
-
-  const [collect, setCollect] = useState();
-  const auth = useSelector((data) => data.user?.authenticate);
-  const poems = useSelector((state) => state.poems.data);
-  const dataFetchedRef = useRef(false);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (dataFetchedRef.current) return;
-    dataFetchedRef.current = true;
-    dispatch(getPoemAsync());
-  }, []);
-
-  const handleClick = (num, col) => {
-    console.log(num);
-    console.log(col);
-    setShow(num);
-    setCollect(col);
-  };
-  const handleClickClose = (num) => {
-    setShow(num);
-  };
-
-  console.log(show);
+function Posts() {
   return (
     <section className={`${styles.main}`}>
-      <Modal show={show} handleClickClose={handleClickClose} col={collect} />
       <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
@@ -242,21 +211,10 @@ function Dashboard() {
       </aside>
 
       <div class="p-4 sm:ml-64">
-        <div class="p-4 rounded-lg dark:border-gray-700 mt-14">
-          <div className={`${styles.poems} `}>
-            {poems.map((item, key) => (
-              <PoemCard
-                item={item}
-                key={key}
-                on={show}
-                handleClick={handleClick}
-              />
-            ))}
-          </div>
-        </div>
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700"></div>
       </div>
     </section>
   );
 }
 
-export default Dashboard;
+export default Posts;
