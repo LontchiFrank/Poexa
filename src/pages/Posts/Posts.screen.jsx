@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Posts.module.css";
 import { Link } from "react-router-dom";
 import Poexa from "../../assert/PoeXa.png";
+import PoemCard from "../../components/CardAuth/PoemCard.component";
+import loader from "../../assert/no.png";
+import ModalForm from "../../components/Modal/ModalForm.component";
 
 function Posts() {
   const [info, setInfo] = useState([]);
+  const [show, setShow] = useState(false);
+  const handleClick = () => {
+    setShow(true);
+    // setCollect(col);
+  };
+  const handleClickClose = (num) => {
+    setShow(num);
+  };
+
   return (
     <section className={`${styles.main}`}>
+      <ModalForm show={show} handleClickClose={handleClickClose} />
       <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
@@ -216,6 +229,7 @@ function Posts() {
           <div className="flex justify-end">
             <button
               type="button"
+              onClick={() => handleClick()}
               class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
             >
               Purple to Pink
@@ -223,7 +237,28 @@ function Posts() {
           </div>
 
           <div className="flex justify-center items-center">
-            <div></div>
+            <div>
+              {info.length === null ? (
+                <div
+                  className="grid grid-cols-1"
+                  style={{
+                    width: "100%",
+                    // height: "100vh",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <img src={loader} />
+                </div>
+              ) : (
+                <div>
+                  {info.map((item, key) => (
+                    <PoemCard item={item} key={key} />
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
