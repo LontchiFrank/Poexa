@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiHeart } from "react-icons/fi";
 
 function ModalForm({ show, handleClickClose }) {
+  const [formData, setFormData] = useState({
+    title: "",
+    category: ["Romance", "Fantasy", "Comedy", "Story", "Horror"],
+    desc: "",
+  });
+  const [image, setImage] = useState({ file: null });
+  const { title, desc, category } = formData;
+  console.log(category);
   return (
     <div>
       {show ? (
@@ -27,6 +35,7 @@ function ModalForm({ show, handleClickClose }) {
                     id="text"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Title"
+                    value={title}
                     required
                   />
                 </div>
@@ -41,10 +50,18 @@ function ModalForm({ show, handleClickClose }) {
                     id="countries"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>France</option>
-                    <option>Germany</option>
+                    {category.map((item, key) => {
+                      <option>{item} </option>;
+                    })}
+                    <option>Love</option>
+                    <option>
+                      {" "}
+                      {category.map((item, key) => {
+                        <p key={key}> {item}</p>;
+                      })}
+                    </option>
+                    <option>Story</option>
+                    <option>Fantasy</option>
                   </select>
                 </div>
                 <div className="flex flex-col">
@@ -71,6 +88,7 @@ function ModalForm({ show, handleClickClose }) {
                     rows="4"
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Leave a comment..."
+                    value={desc}
                   ></textarea>
                 </div>
                 <div class="flex items-start mb-6"></div>
