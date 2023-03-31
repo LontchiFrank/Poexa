@@ -236,9 +236,9 @@ function Posts() {
             </button>
           </div>
 
-          <div className="flex justify-center items-center">
+          <div className="h-full flex justify-center items-center">
             <div>
-              {info.length === null ? (
+              {info.length === 0 ? (
                 <div
                   className="grid grid-cols-1"
                   style={{
