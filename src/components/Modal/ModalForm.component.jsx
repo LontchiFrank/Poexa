@@ -9,7 +9,18 @@ function ModalForm({ show, handleClickClose }) {
   });
   const [image, setImage] = useState({ file: null });
   const { title, desc, category } = formData;
-  console.log(category);
+
+  const listItems = category.map((item) => item);
+  console.log(listItems);
+
+  function handleImageChange(e) {
+    setImage({ file: e.target.files[0] });
+  }
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <div>
       {show ? (
@@ -36,6 +47,7 @@ function ModalForm({ show, handleClickClose }) {
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Title"
                     value={title}
+                    onChange={(e) => handleChange(e)}
                     required
                   />
                 </div>
@@ -50,18 +62,17 @@ function ModalForm({ show, handleClickClose }) {
                     id="countries"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
-                    {category.map((item, key) => {
-                      <option>{item} </option>;
-                    })}
+                    {category.map((item, key) => (
+                      // console.log(first)
+                      <option
+                        value={item}
+                        key={item}
+                        onChange={(e) => handleChange(e)}
+                      >
+                        {item}{" "}
+                      </option>
+                    ))}
                     <option>Love</option>
-                    <option>
-                      {" "}
-                      {category.map((item, key) => {
-                        <p key={key}> {item}</p>;
-                      })}
-                    </option>
-                    <option>Story</option>
-                    <option>Fantasy</option>
                   </select>
                 </div>
                 <div className="flex flex-col">
@@ -73,7 +84,11 @@ function ModalForm({ show, handleClickClose }) {
                   </label>
                   <input
                     type="file"
+                    id="img"
+                    name="image"
+                    accept="image/*"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onChange={(e) => handleImageChange(e)}
                   />
                 </div>
                 <div className="mb-6">
@@ -89,6 +104,7 @@ function ModalForm({ show, handleClickClose }) {
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Leave a comment..."
                     value={desc}
+                    onChange={(e) => handleChange(e)}
                   ></textarea>
                 </div>
                 <div class="flex items-start mb-6"></div>
