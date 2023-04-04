@@ -20,6 +20,9 @@ function ModalForm({ show, handleClickClose }) {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div>
@@ -33,7 +36,7 @@ function ModalForm({ show, handleClickClose }) {
               // class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full"
             >
               <h1 className="text-xl font-bold pb-6">Create Poem</h1>
-              <form>
+              <form onSubmit={(e) => handleSubmit(e)}>
                 <div class="mb-6">
                   <label
                     for="title"
@@ -44,6 +47,7 @@ function ModalForm({ show, handleClickClose }) {
                   <input
                     type="text"
                     id="text"
+                    name="title"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Title"
                     value={title}
@@ -65,6 +69,7 @@ function ModalForm({ show, handleClickClose }) {
                     {category.map((item, key) => (
                       // console.log(first)
                       <option
+                        name={item}
                         value={item}
                         key={item}
                         onChange={(e) => handleChange(e)}
@@ -101,6 +106,7 @@ function ModalForm({ show, handleClickClose }) {
                   <textarea
                     id="message"
                     rows="4"
+                    name="desc"
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Leave a comment..."
                     value={desc}
