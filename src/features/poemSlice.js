@@ -26,6 +26,14 @@ export const getPoemAsync = (data) => async (dispatch) => {
     throw new Error(error);
   }
 };
+export const createPoemAsync = (data) => async (dispatch) => {
+  try {
+    const response = await axios.post(`${API_URL}/new-poem`, data);
+    dispatch(createPoem(response.data));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
-export const { getPoem } = poemSlide.actions;
+export const { getPoem, createPoem } = poemSlide.actions;
 export default poemSlide.reducer;
