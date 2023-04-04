@@ -28,7 +28,7 @@ export const getPoemAsync = (data) => async (dispatch) => {
 };
 export const createPoemAsync = (data) => async (dispatch) => {
   try {
-    const response = await axios.post(`${API_URL}/new-poem`, data);
+    const response = await axios.post(`${API_URL}new-poem`, data);
     dispatch(createPoem(response.data));
   } catch (error) {
     throw new Error(error);

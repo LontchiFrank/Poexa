@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FiHeart } from "react-icons/fi";
+import { createPoemAsync } from "../../features/poemSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 function ModalForm({ show, handleClickClose }) {
   const [formData, setFormData] = useState({
@@ -7,6 +9,7 @@ function ModalForm({ show, handleClickClose }) {
     category: ["Romance", "Fantasy", "Comedy", "Story", "Horror"],
     desc: "",
   });
+  const dispatch = useDispatch();
   const [image, setImage] = useState({ file: null });
   const { title, desc, category } = formData;
 
@@ -14,14 +17,17 @@ function ModalForm({ show, handleClickClose }) {
   console.log(listItems);
 
   function handleImageChange(e) {
-    setImage({ file: e.target.files[0] });
+    setImage(e.target.files[0]);
   }
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const data = { ...formData, image };
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(createPoemAsync(data));
+    console.log(createPoemAsync, "frank");
   };
 
   return (
