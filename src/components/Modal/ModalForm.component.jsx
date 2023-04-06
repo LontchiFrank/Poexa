@@ -6,15 +6,16 @@ import { useSelector, useDispatch } from "react-redux";
 function ModalForm({ show, handleClickClose }) {
   const [formData, setFormData] = useState({
     title: "",
-    category: ["Romance", "Fantasy", "Comedy", "Story", "Horror"],
+    category: "",
     desc: "",
   });
   const dispatch = useDispatch();
   const [image, setImage] = useState({ file: null });
   const { title, desc, category } = formData;
+  const Category = ["Romance", "Fantasy", "Comedy", "Story", "Horror"];
 
-  const listItems = category.map((item) => item);
-  console.log(listItems);
+  // const listItems = category.map((item) => item);
+  // console.log(listItems);
 
   function handleImageChange(e) {
     setImage(e.target.files[0]);
@@ -22,6 +23,7 @@ function ModalForm({ show, handleClickClose }) {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
   const data = { ...formData, image };
   const handleSubmit = (e) => {
@@ -70,20 +72,17 @@ function ModalForm({ show, handleClickClose }) {
                   </label>
                   <select
                     id="countries"
+                    name="category"
+                    // onClick={(e) => console.log(e, "select")}
+                    onChange={(e) => handleChange(e)}
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
-                    {category.map((item, key) => (
+                    {Category.map((item) => (
                       // console.log(first)
-                      <option
-                        name={item}
-                        value={item}
-                        key={item}
-                        onChange={(e) => handleChange(e)}
-                      >
+                      <option name={item} key={item} value={item}>
                         {item}{" "}
                       </option>
                     ))}
-                    <option>Love</option>
                   </select>
                 </div>
                 <div className="flex flex-col">
