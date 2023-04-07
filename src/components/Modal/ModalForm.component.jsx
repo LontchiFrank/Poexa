@@ -23,13 +23,20 @@ function ModalForm({ show, handleClickClose }) {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
-  const data = { ...formData, image };
+  const { file } = image;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPoemAsync(data));
-    console.log(createPoemAsync, "frank");
+    const info = new FormData();
+    info.append("title", title);
+    info.append("category", category);
+    info.append("desc", desc);
+    info.append("image", image);
+    console.log(image);
+    console.log(info);
+    dispatch(createPoemAsync(info));
   };
 
   return (
@@ -77,6 +84,7 @@ function ModalForm({ show, handleClickClose }) {
                     onChange={(e) => handleChange(e)}
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
+                    <option>Choose Category</option>
                     {Category.map((item) => (
                       // console.log(first)
                       <option name={item} key={item} value={item}>

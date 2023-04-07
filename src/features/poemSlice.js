@@ -28,10 +28,15 @@ export const getPoemAsync = (data) => async (dispatch) => {
 };
 export const createPoemAsync = (data) => async (dispatch) => {
   try {
-    const response = await axios.post(`${API_URL}new-poem`, data);
+    const response = await axios.post(`${API_URL}new-poem`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     dispatch(createPoem(response.data));
   } catch (error) {
-    throw new Error(error);
+    // throw new Error(error);
+    console.log(error);
   }
 };
 
