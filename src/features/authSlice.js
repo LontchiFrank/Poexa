@@ -80,7 +80,7 @@ export const authSlide = createSlice({
 
       // localStorage.setItem("msg", msg);
       localStorage.setItem("user", JSON.stringify(state.userInfo));
-      localStorage.setItem("token", JSON.stringify(state.userToken));
+      localStorage.setItem("token", state.userToken);
     },
     [signInUser.rejected]: (state, { payload }) => {
       state.loading = false;

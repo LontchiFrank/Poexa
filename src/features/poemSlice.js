@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const API_URL = "http://localhost:8000/api/poem/";
 
@@ -28,12 +29,16 @@ export const getPoemAsync = (data) => async (dispatch) => {
 };
 export const createPoemAsync = (data) => async (dispatch) => {
   try {
+    const token = localStorage.getItem("token");
+    console.log(localStorage.getItem("token"));
     const response = await axios.post(`${API_URL}new-poem`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
+        "auth-token": token,
       },
     });
     dispatch(createPoem(response.data));
+    console.log(token, "haha");
   } catch (error) {
     // throw new Error(error);
     console.log(error);
