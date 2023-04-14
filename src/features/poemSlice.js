@@ -3,6 +3,13 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
 const API_URL = "http://localhost:8000/api/poem/";
+const token = localStorage.getItem("token");
+const config = {
+  headers: {
+    "Content-Type": "multipart/form-data",
+    "auth-token": token,
+  },
+};
 
 export const poemSlide = createSlice({
   name: "poem",
@@ -16,6 +23,9 @@ export const poemSlide = createSlice({
     createPoem: (state, action) => {
       state.data = [...action.payload];
     },
+    getPrivatePoem: (state, action) => {
+      state.data = action.payload;
+    },
   },
 });
 
@@ -23,6 +33,14 @@ export const getPoemAsync = (data) => async (dispatch) => {
   try {
     const response = await axios.get(`${API_URL}`);
     dispatch(getPoem(response.data));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+export const getPrivatePoemAsync = (data) => async (dispatch) => {
+  try {
+    const response = await axios.get(`${API_URL}userpoem`, config);
+    dispatch(getPrivatePoem(response.data));
   } catch (error) {
     throw new Error(error);
   }
@@ -45,5 +63,5 @@ export const createPoemAsync = (data) => async (dispatch) => {
   }
 };
 
-export const { getPoem, createPoem } = poemSlide.actions;
+export const { getPoem, createPoem, getPrivatePoem } = poemSlide.actions;
 export default poemSlide.reducer;

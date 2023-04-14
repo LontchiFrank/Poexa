@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./Posts.module.css";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Poexa from "../../assert/PoeXa.png";
 import PoemCard from "../../components/CardAuth/PoemCard.component";
 import loader from "../../assert/no.png";
 import ModalForm from "../../components/Modal/ModalForm.component";
+import { getPrivatePoemAsync } from "../../features/poemSlice";
 
 function Posts() {
   const [info, setInfo] = useState([]);
   const [show, setShow] = useState(false);
+  const poems = useSelector((state) => state.poems.data);
   const handleClick = () => {
     setShow(true);
     // setCollect(col);
   };
+  const dataFetchedRef = useRef(false);
+  const dispatch = useDispatch();
   const handleClickClose = (num) => {
     setShow(num);
   };
+  useEffect(() => {
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+    dispatch(getPrivatePoemAsync());
+    console.log(getPrivatePoemAsync());
+  }, []);
 
   return (
     <section className={`${styles.main}`}>
@@ -252,10 +263,17 @@ function Posts() {
                   <img src={loader} />
                 </div>
               ) : (
-                <div>
-                  {info.map((item, key) => (
-                    <PoemCard item={item} key={key} />
-                  ))}
+                <div class="w-full flex flex-wrap">
+                  <div className={`${styles.poems} `}>
+                    {info.map((item, key) => (
+                      <PoemCard
+                        item={item}
+                        key={key}
+                        on={show}
+                        handleClick={handleClick}
+                      />
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
