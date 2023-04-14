@@ -7,10 +7,13 @@ import PoemCard from "../../components/CardAuth/PoemCard.component";
 import loader from "../../assert/no.png";
 import ModalForm from "../../components/Modal/ModalForm.component";
 import { getPrivatePoemAsync } from "../../features/poemSlice";
+import UserPoemCard from "../../components/UserPoem/UserPoemCard.component";
 
 function Posts() {
-  const [info, setInfo] = useState([]);
+  const [info, setInfo] = useState();
   const [show, setShow] = useState(false);
+
+  const [collect, setCollect] = useState();
   const poems = useSelector((state) => state.poems.data);
   const handleClick = () => {
     setShow(true);
@@ -25,12 +28,19 @@ function Posts() {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
     dispatch(getPrivatePoemAsync());
-    console.log(getPrivatePoemAsync());
+    setInfo(poems);
   }, []);
+  console.log(info);
+  // const handleClick = (num, col) => {
+  //   console.log(num);
+  //   console.log(col);
+  //   setShow(num);
+  //   setCollect(col);
+  // };
 
   return (
     <section className={`${styles.main}`}>
-      <ModalForm show={show} handleClickClose={handleClickClose} />
+      <ModalForm show={show} handleClickClose={handleClickClose} info={info} />
       <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
@@ -249,7 +259,7 @@ function Posts() {
 
           <div className="h-full flex justify-center items-center">
             <div>
-              {info.length === 0 ? (
+              {poems.length === 0 ? (
                 <div
                   className="grid grid-cols-1"
                   style={{
@@ -265,14 +275,15 @@ function Posts() {
               ) : (
                 <div class="w-full flex flex-wrap">
                   <div className={`${styles.poems} `}>
-                    {info.map((item, key) => (
-                      <PoemCard
-                        item={item}
-                        key={key}
-                        on={show}
-                        handleClick={handleClick}
-                      />
-                    ))}
+                    {poems &&
+                      poems.map((item, key) => (
+                        <UserPoemCard
+                          item={item}
+                          key={key}
+                          on={show}
+                          handleClick={handleClick}
+                        />
+                      ))}
                   </div>
                 </div>
               )}

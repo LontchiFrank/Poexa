@@ -16,7 +16,7 @@ function PoemCard({ item, on, handleClick }) {
       <div class="md:flex">
         <div class="md:shrink-0">
           <img
-            class="h-48 w-full object-cover md:h-full md:w-48"
+            class="h-full w-full object-cover md:h-full md:w-48"
             src={item.image}
             alt="Modern building architecture"
           />

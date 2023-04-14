@@ -41,6 +41,7 @@ export const getPrivatePoemAsync = (data) => async (dispatch) => {
   try {
     const response = await axios.get(`${API_URL}userpoem`, config);
     dispatch(getPrivatePoem(response.data));
+    // console.log(response.data);
   } catch (error) {
     throw new Error(error);
   }
