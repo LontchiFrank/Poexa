@@ -23,7 +23,7 @@ export const poemSlide = createSlice({
       state.data = action.payload;
     },
     createPoem: (state, action) => {
-      state.data = [...action.payload];
+      state.data = [{ ...action.payload }, ...state.data];
     },
     getPrivatePoem: (state, action) => {
       state.data = action.payload;
@@ -37,6 +37,7 @@ export const poemSlide = createSlice({
       state.data = data.filter((item) => item.id !== action.payload.id);
     },
   },
+  extraReducers: {},
 });
 
 export const getPoemAsync = (data) => async (dispatch) => {
@@ -56,6 +57,7 @@ export const getPrivatePoemAsync = (data) => async (dispatch) => {
     throw new Error(error);
   }
 };
+// export const signUpUser = createAsyncThunk("registeruser",
 export const createPoemAsync = (data) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
@@ -67,7 +69,10 @@ export const createPoemAsync = (data) => async (dispatch) => {
       },
     });
     dispatch(createPoem(res.data));
-    myAlert(res ? true : false);
+    console.log({ res });
+    if (res.status == "200") {
+      myAlert(true, "Created successfully");
+    }
     console.log(token, "haha");
   } catch (error) {
     // throw new Error(error);
@@ -80,13 +85,22 @@ export const editPoemAsync = (data) => async (dispatch) => {
   try {
     const response = await axios.put(`${API_URL}${data.id}`, data.info, config);
     dispatch(editPoem(response.data));
-  } catch (error) {}
+    if (response.status == "200") {
+      myAlert(true, "Edited successfully");
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const deletePoemAsync = (data) => async (dispatch) => {
   try {
+    console.log(data);
     const response = await axios.delete(`${API_URL}${data}`, config);
     dispatch(deletePoem(response));
+    if (response.status == "200") {
+      myAlert(true, "Deleted successfully");
+    }
     // return true;
   } catch (error) {
     console.log(error);

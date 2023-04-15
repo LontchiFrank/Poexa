@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FiHeart } from "react-icons/fi";
 import { createPoemAsync } from "../../features/poemSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { myAlert } from "../Alert/myAlert";
 
 function ModalForm({ show, handleClickClose, infos }) {
   const [formData, setFormData] = useState({
@@ -36,7 +37,16 @@ function ModalForm({ show, handleClickClose, infos }) {
     info.append("image", image);
     console.log(image);
     console.log(info);
-    dispatch(createPoemAsync(info));
+    dispatch(
+      createPoemAsync(info)
+      // .then((res) => {
+      //   console.log(res);
+      //   myAlert(true, "success", "Created Successfully");
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // })
+    );
   };
 
   return (

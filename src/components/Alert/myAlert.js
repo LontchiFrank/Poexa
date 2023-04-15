@@ -1,6 +1,7 @@
 import sAlert from "sweetalert2";
 
-export const myAlert = async (res, type = "normal", title) => {
+export const myAlert = async (res, title, type = "normal") => {
+  console.log(res, type, title);
   if (type == "normal") {
     if (res) {
       sAlert.fire({
