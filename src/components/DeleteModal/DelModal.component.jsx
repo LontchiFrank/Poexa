@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { deletePoemAsync } from "../../features/poemSlice";
 
-function DelModal({ show, handleClickClose1 }) {
+function DelModal({ show, handleClickClose1, col }) {
+  console.log(col);
+  const dispatch = useDispatch();
+  const deletePoem = (id) => {
+    dispatch(deletePoemAsync(id));
+  };
+
   return (
     <div>
       {show ? (
@@ -12,13 +20,14 @@ function DelModal({ show, handleClickClose1 }) {
               tabindex="-1"
               // class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full"
             >
-              <h1 className="text-xl font-bold pb-6">Create Poem</h1>
-              <div> Are you sure you want to Delete ?</div>
+              <h1 className="text-xl font-bold pb-6">Delete Poem</h1>
+              <div className="pb-6"> Are you sure you want to Delete ?</div>
               <button
                 type="submit"
-                class="mr-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="mr-3 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                onClick={() => deletePoem(col)}
               >
-                Create
+                Delete
               </button>
 
               <button

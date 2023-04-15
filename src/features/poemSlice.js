@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { data } from "autoprefixer";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { myAlert } from "../components/Alert/myAlert";
 
 const API_URL = "http://localhost:8000/api/poem/";
 const token = localStorage.getItem("token");
@@ -59,16 +60,18 @@ export const createPoemAsync = (data) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     console.log(localStorage.getItem("token"));
-    const response = await axios.post(`${API_URL}new-poem`, data, {
+    const res = await axios.post(`${API_URL}new-poem`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         "auth-token": token,
       },
     });
-    dispatch(createPoem(response.data));
+    dispatch(createPoem(res.data));
+    myAlert(res ? true : false);
     console.log(token, "haha");
   } catch (error) {
     // throw new Error(error);
+
     console.log(error);
   }
 };
@@ -80,10 +83,11 @@ export const editPoemAsync = (data) => async (dispatch) => {
   } catch (error) {}
 };
 
-export const deletePoemAsync = () => async (dispatch) => {
+export const deletePoemAsync = (data) => async (dispatch) => {
   try {
-    const response = await axios.delete(`${API_URL}`);
-    dispatch(deletePoem(response.data));
+    const response = await axios.delete(`${API_URL}${data}`, config);
+    dispatch(deletePoem(response));
+    // return true;
   } catch (error) {
     console.log(error);
   }

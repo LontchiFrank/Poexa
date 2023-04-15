@@ -9,11 +9,13 @@ import ModalForm from "../../components/Modal/ModalForm.component";
 import { getPrivatePoemAsync } from "../../features/poemSlice";
 import UserPoemCard from "../../components/UserPoem/UserPoemCard.component";
 import ModalUser from "../../components/ModalUser/ModalUser.component";
+import DelModal from "../../components/DeleteModal/DelModal.component";
 
 function Posts() {
   const [info, setInfo] = useState();
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
+  const [show2, setShow2] = useState(false);
   const [col, setCol] = useState();
 
   const [collect, setCollect] = useState();
@@ -25,6 +27,11 @@ function Posts() {
     setShow1(num);
     setCol(col);
   };
+  const handleClick2 = (num, col) => {
+    setShow2(num);
+    setCol(col);
+  };
+
   const dataFetchedRef = useRef(false);
   const dispatch = useDispatch();
   const handleClickClose = (num) => {
@@ -32,6 +39,9 @@ function Posts() {
   };
   const handleClickClose1 = (num) => {
     setShow1(num);
+  };
+  const handleClickClose2 = (num) => {
+    setShow2(num);
   };
   useEffect(() => {
     if (dataFetchedRef.current) return;
@@ -55,6 +65,7 @@ function Posts() {
         infos={info}
         col={col}
       />
+      <DelModal show={show2} handleClickClose1={handleClickClose2} col={col} />
       <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
@@ -296,6 +307,7 @@ function Posts() {
                           key={key}
                           on={show1}
                           handleClick={handleClick1}
+                          handleClick2={handleClick2}
                         />
                       ))}
                   </div>
