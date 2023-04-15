@@ -3,7 +3,7 @@ import { FiHeart } from "react-icons/fi";
 import { createPoemAsync } from "../../features/poemSlice";
 import { useSelector, useDispatch } from "react-redux";
 
-function ModalForm({ show, handleClickClose }) {
+function ModalForm({ show, handleClickClose, infos }) {
   const [formData, setFormData] = useState({
     title: "",
     category: "",

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { data } from "autoprefixer";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -25,6 +26,14 @@ export const poemSlide = createSlice({
     },
     getPrivatePoem: (state, action) => {
       state.data = action.payload;
+    },
+    editPoem: (state, action) => {
+      state.data = data.map((item) =>
+        item.id === action.payload.id ? action.payload : item
+      );
+    },
+    deletePoem: (state, action) => {
+      state.data = data.filter((item) => item.id !== action.payload.id);
     },
   },
 });
@@ -64,5 +73,22 @@ export const createPoemAsync = (data) => async (dispatch) => {
   }
 };
 
-export const { getPoem, createPoem, getPrivatePoem } = poemSlide.actions;
+export const editPoemAsync = (data) => async (dispatch) => {
+  try {
+    const response = await axios.put(`${API_URL}${data.id}`, data.info, config);
+    dispatch(editPoem(response.data));
+  } catch (error) {}
+};
+
+export const deletePoemAsync = () => async (dispatch) => {
+  try {
+    const response = await axios.delete(`${API_URL}`);
+    dispatch(deletePoem(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const { getPoem, createPoem, getPrivatePoem, editPoem, deletePoem } =
+  poemSlide.actions;
 export default poemSlide.reducer;

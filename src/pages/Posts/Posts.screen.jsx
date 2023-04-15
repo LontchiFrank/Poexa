@@ -8,21 +8,30 @@ import loader from "../../assert/no.png";
 import ModalForm from "../../components/Modal/ModalForm.component";
 import { getPrivatePoemAsync } from "../../features/poemSlice";
 import UserPoemCard from "../../components/UserPoem/UserPoemCard.component";
+import ModalUser from "../../components/ModalUser/ModalUser.component";
 
 function Posts() {
   const [info, setInfo] = useState();
   const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
+  const [col, setCol] = useState();
 
   const [collect, setCollect] = useState();
   const poems = useSelector((state) => state.poems.data);
   const handleClick = () => {
     setShow(true);
-    // setCollect(col);
+  };
+  const handleClick1 = (num, col) => {
+    setShow1(num);
+    setCol(col);
   };
   const dataFetchedRef = useRef(false);
   const dispatch = useDispatch();
   const handleClickClose = (num) => {
     setShow(num);
+  };
+  const handleClickClose1 = (num) => {
+    setShow1(num);
   };
   useEffect(() => {
     if (dataFetchedRef.current) return;
@@ -30,17 +39,22 @@ function Posts() {
     dispatch(getPrivatePoemAsync());
     setInfo(poems);
   }, []);
-  console.log(info);
-  // const handleClick = (num, col) => {
-  //   console.log(num);
-  //   console.log(col);
-  //   setShow(num);
-  //   setCollect(col);
-  // };
+  const handleClicks = (num, col) => {
+    console.log(num);
+    console.log(col);
+    setShow(num);
+    setCollect(col);
+  };
 
   return (
     <section className={`${styles.main}`}>
-      <ModalForm show={show} handleClickClose={handleClickClose} info={info} />
+      <ModalForm show={show} handleClickClose={handleClickClose} infos={info} />
+      <ModalUser
+        show={show1}
+        handleClickClose={handleClickClose1}
+        infos={info}
+        col={col}
+      />
       <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
@@ -280,8 +294,8 @@ function Posts() {
                         <UserPoemCard
                           item={item}
                           key={key}
-                          on={show}
-                          handleClick={handleClick}
+                          on={show1}
+                          handleClick={handleClick1}
                         />
                       ))}
                   </div>
