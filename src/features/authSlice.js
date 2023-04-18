@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { myAlert } from "../components/Alert/myAlert";
 // import { createPoemAsync } from "./poemSlice";
 
 const API_URL = "http://localhost:8000/api/user";
@@ -24,6 +25,9 @@ export const signUpUser = createAsyncThunk("registeruser", async (data) => {
     };
     // const body = JSON.stringify(data);
     const res = await axios.post(`${API_URL}/signup`, data, config);
+    if (res.status == "200") {
+      myAlert(true, "Created successfully");
+    }
     return res.json();
   } catch (error) {
     if (error.response && error.response.data.message) {
@@ -45,7 +49,9 @@ export const signInUser = createAsyncThunk("auth/login", async (data) => {
     const res = await axios.post(`${API_URL}/login`, body, config);
     console.log(res, "res");
     const result = await res;
-    // localStorage.setItem("userToken", res.data.token);
+    if (res.status == "200") {
+      myAlert(true, "Created successfully");
+    }
     console.log(result);
     return result;
   } catch (error) {
