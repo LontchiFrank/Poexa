@@ -56,7 +56,7 @@ function ModalUser({ show, handleClickClose, infos, col }) {
     <div>
       {show ? (
         <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
-          <div className="bg-white p-2 rounded w-1/2 sm:w-80">
+          <div className="bg-white p-2 rounded lg:w-1/2 sm:w-4/5">
             <div
               className="p-8"
               id="large-modal"
