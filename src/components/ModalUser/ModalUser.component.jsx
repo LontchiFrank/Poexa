@@ -56,7 +56,7 @@ function ModalUser({ show, handleClickClose, infos, col }) {
     <div>
       {show ? (
         <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
-          <div className="bg-white p-2 rounded w-1/2">
+          <div className="bg-white p-2 rounded w-1/2 sm:w-80">
             <div
               className="p-8"
               id="large-modal"
@@ -93,13 +93,10 @@ function ModalUser({ show, handleClickClose, infos, col }) {
                   <select
                     id="countries"
                     name="category"
-                    // onClick={(e) => console.log(e, "select")}
                     onChange={(e) => handleChange(e)}
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
-                    {/* <option>Choose Category</option> */}
                     {Category.map((item) => (
-                      // console.log(first)
                       <option name={item} key={item} value={category}>
                         {item}{" "}
                       </option>
