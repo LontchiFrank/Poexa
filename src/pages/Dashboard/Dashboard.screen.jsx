@@ -38,6 +38,12 @@ function Dashboard() {
     setShow(num);
   };
 
+  const signOut = () => {
+    localStorage.clear("auth");
+    localStorage.clear("token");
+    localStorage.clear("user");
+  };
+
   console.log(show);
   return (
     <section className={`${styles.main}`}>
@@ -205,7 +211,7 @@ function Dashboard() {
 
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     <svg
@@ -221,7 +227,12 @@ function Dashboard() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
+                    <span
+                      class="flex-1 ml-3 whitespace-nowrap"
+                      onClick={signOut}
+                    >
+                      Sign Out
+                    </span>
                   </a>
                 </li>
               </ul>
