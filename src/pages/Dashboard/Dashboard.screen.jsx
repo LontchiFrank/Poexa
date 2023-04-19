@@ -17,7 +17,6 @@ function Dashboard() {
   };
 
   const [collect, setCollect] = useState();
-  const auth = useSelector((data) => data.user?.authenticate);
   const poems = useSelector((state) => state.poems.data);
   const dataFetchedRef = useRef(false);
   const dispatch = useDispatch();
@@ -261,7 +260,7 @@ function Dashboard() {
             : "p-4 sm:ml-64 "
         }
       >
-        <div class="w-full flex flex-wrap">
+        <div class="w-full pt-16 flex flex-wrap">
           <div className={`${styles.poems} `}>
             {poems.map((item, key) => (
               <PoemCard
