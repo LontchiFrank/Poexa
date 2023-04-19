@@ -18,15 +18,16 @@ function Posts() {
   const [show2, setShow2] = useState(false);
   const [col, setCol] = useState();
   const [open, setOpen] = useState(false);
+  const openDrawer = () => {
+    setOpen(!open);
+  };
 
   const [collect, setCollect] = useState();
   const poems = useSelector((state) => state.poems.data);
   const handleClick = () => {
     setShow(true);
   };
-  const openDrawer = () => {
-    setOpen(!open);
-  };
+
   const handleClick1 = (num, col) => {
     setShow1(num);
     setCol(col);
@@ -38,6 +39,7 @@ function Posts() {
 
   const dataFetchedRef = useRef(false);
   const dispatch = useDispatch();
+  const windowWidth = useRef(window.innerWidth);
   const handleClickClose = (num) => {
     setShow(num);
   };
@@ -78,9 +80,9 @@ function Posts() {
                 data-drawer-target="logo-sidebar"
                 data-drawer-toggle="logo-sidebar"
                 aria-controls="logo-sidebar"
-                onClick={openDrawer}
                 type="button"
-                class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                onClick={openDrawer}
+                class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               >
                 <span class="sr-only">Open sidebar</span>
                 <svg
@@ -278,7 +280,15 @@ function Posts() {
         </aside>
       ) : null}
 
-      <div class="p-4 sm:ml-auto">
+      <div
+        class={
+          windowWidth.current > 500 && open
+            ? "p-4 sm:ml-64"
+            : windowWidth.current < 500 || open
+            ? "p-4 lg:container mx-auto px-4 sm:max-w-sm mx-auto sm:mx-auto"
+            : "p-4"
+        }
+      >
         <div class="mt-16 ">
           <div className="flex justify-end">
             <button
