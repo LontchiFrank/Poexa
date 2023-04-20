@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../footer/Footer.component";
 import logo from "../../assert/PoeXa.png";
+import { Link } from "react-router-dom";
 
 function Wrapper({ children }) {
   return (
@@ -55,10 +56,14 @@ function Wrapper({ children }) {
               </li>
 
               <button className="rounded outline  outline-black-500 p-2">
-                <p className="text-white"> Sign In</p>
+                <p className="text-white">
+                  <Link to="/login">Sign In</Link>
+                </p>
               </button>
               <button className="rounded outline  outline-violet-500 p-2 ml-4">
-                <p className="text-violet"> Sign Up</p>
+                <p className="text-violet">
+                  <Link to="/register">Sign Up</Link>
+                </p>
               </button>
             </ul>
           </div>

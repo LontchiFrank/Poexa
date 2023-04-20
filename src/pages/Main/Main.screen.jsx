@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./Main.module.css";
 import poet from "../../assert/2.png";
 import pen from "../../assert/pen.png";
@@ -12,19 +12,21 @@ import { getPoemAsync } from "../../features/poemSlice";
 import PoemCard from "../../components/poenCard/PoemCard.component";
 import Wrapper from "../../components/Wrapper/Wrapper.component";
 import loader from "../../assert/load1.svg";
-import { FaArrowRight } from "react-icons/fa";
+// import { FapoemsowRight } from "react-icons/fa";
 
 function Main() {
   const dispatch = useDispatch();
   const dataFetchedRef = useRef(false);
+  const poems = useSelector((state) => state.poems.data);
+  const [arr, setArr] = useState([poems]);
   useEffect(() => {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
     dispatch(getPoemAsync());
   }, []);
-  const poems = useSelector((state) => state.poems.data);
-  console.log(poems);
-  const arr = [];
+  // console.log(typeof poems);
+  const array = poems.slice(12);
+  console.log(array);
 
   return (
     <section className={`${styles.main_screen}`}>
@@ -33,7 +35,7 @@ function Main() {
           <div className={`${styles.whole} w-full md:flex mt-28  `}>
             <div className={`${styles.hero} xl:w-2/5 md:w-full`}>
               <h1
-                className=" xl:text-6xl  md:text-5xl sm:text-3xl max-[770px]:text-3xl"
+                className=" xl:text-[4.3em]  md:text-5xl sm:text-3xl max-[770px]:text-3xl pt-16 pb-6"
                 style={{ color: "rgba(22,13,61,0.902)" }}
               >
                 Discover highly useful & amazing Poems Resources & Tools.
@@ -54,7 +56,7 @@ function Main() {
               <img src={poet} className="h-full " />
             </div>
           </div>
-          <div className="cates w-full flex justify-center items-center flex-wrap gap-3 xl:gap-8 mt-6 ">
+          <div className="cates pt-12 w-full flex justify-center items-center flex-wrap gap-3 xl:gap-8 mt-6 ">
             <div className="cat h-[160px] w-[185px] bg-slate-50 drop-shadow-xl rounded-xl mt-8 ">
               <div className="h-28 w-full flex justify-center items-center ">
                 <img className={`${styles.pen} h-full`} src={pen} />
@@ -111,8 +113,8 @@ function Main() {
               >
                 Latest Poems
               </p>
-              {/* <div>
-                {poems.length == 0 ? (
+              <div>
+                {array.length == 0 ? (
                   <div
                     className="grid grid-cols-1"
                     style={{
@@ -127,158 +129,115 @@ function Main() {
                   </div>
                 ) : (
                   <div className={`${styles.poems} `}>
-                    {poems.map((item, key) => (
+                    {array.map((item, key) => (
                       <PoemCard item={item} key={key} />
                     ))}
                   </div>
                 )}
-              </div> */}
-
-              <div className="flex">
-                <div class="max-w-sm w-full lg:max-w-full lg:flex">
-                  <div
-                    class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-                    style={{
-                      backgroundImage:
-                        "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzn5z3GQKbI5FnB8UVcD4jRbwI3pYxoFTRzw&usqp=CAU')",
-                    }}
-                    title="Woman holding a mug"
-                  ></div>
-                  <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="mb-8">
-                      <p class="text-sm text-gray-600 flex items-center">
-                        <svg
-                          class="fill-current text-gray-500 w-3 h-3 mr-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                        </svg>
-                        Members only
-                      </p>
-                      <div class="text-gray-900 font-bold text-xl mb-2">
-                        Can coffee make you a better developer?
-                      </div>
-                      <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Voluptatibus quia, nulla! Maiores et perferendis
-                        eaque, exercitationem praesentium nihil.
-                      </p>
-                    </div>
-                    <div class="flex items-center">
-                      <img
-                        class="w-10 h-10 rounded-full mr-4"
-                        src="/img/jonathan.jpg"
-                        alt="Avatar of Jonathan Reinink"
-                      />
-                      <div class="text-sm">
-                        <p class="text-gray-900 leading-none">
-                          Jonathan Reinink
-                        </p>
-                        <p class="text-gray-600">Aug 18</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="max-w-sm w-full lg:max-w-full lg:flex">
-                  <div
-                    class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-                    style={{
-                      backgroundImage:
-                        "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJeRLpcFr7al_URljs2Wd_4x-z8mdH2XOWcw&usqp=CAU')",
-                    }}
-                    title="Woman holding a mug"
-                  ></div>
-                  <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="mb-8">
-                      <p class="text-sm text-gray-600 flex items-center">
-                        <svg
-                          class="fill-current text-gray-500 w-3 h-3 mr-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                        </svg>
-                        Members only
-                      </p>
-                      <div class="text-gray-900 font-bold text-xl mb-2">
-                        Can coffee make you a better developer?
-                      </div>
-                      <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Voluptatibus quia, nulla! Maiores et perferendis
-                        eaque, exercitationem praesentium nihil.
-                      </p>
-                    </div>
-                    <div class="flex items-center">
-                      <img
-                        class="w-10 h-10 rounded-full mr-4"
-                        src="/img/jonathan.jpg"
-                        alt="Avatar of Jonathan Reinink"
-                      />
-                      <div class="text-sm">
-                        <p class="text-gray-900 leading-none">
-                          Jonathan Reinink
-                        </p>
-                        <p class="text-gray-600">Aug 18</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="max-w-sm w-full lg:max-w-full lg:flex">
-                  <div
-                    class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-                    style={{
-                      backgroundImage:
-                        "url('https://images.unsplash.com/photo-1545912452-8aea7e25a3d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGxhZHl8ZW58MHx8MHx8&w=1000&q=80')",
-                    }}
-                    title="Woman holding a mug"
-                  ></div>
-                  <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="mb-8">
-                      <p class="text-sm text-gray-600 flex items-center">
-                        <svg
-                          class="fill-current text-gray-500 w-3 h-3 mr-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                        </svg>
-                        Members only
-                      </p>
-                      <div class="text-gray-900 font-bold text-xl mb-2">
-                        Can coffee make you a better developer?
-                      </div>
-                      <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Voluptatibus quia, nulla! Maiores et perferendis
-                        eaque, exercitationem praesentium nihil.
-                      </p>
-                    </div>
-                    <div class="flex items-center">
-                      <img
-                        class="w-10 h-10 rounded-full mr-4"
-                        src="/img/jonathan.jpg"
-                        alt="Avatar of Jonathan Reinink"
-                      />
-                      <div class="text-sm">
-                        <p class="text-gray-900 leading-none">
-                          Jonathan Reinink
-                        </p>
-                        <p class="text-gray-600">Aug 18</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
 
-              <div className="w-full flex justify-center items-center pt-20">
+              <div className="pb-16 w-full flex justify-center items-center pt-20">
                 <button
                   type="button"
                   class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-5 text-center mr-2 mb-2"
                 >
                   <p> Browse latest poems </p>
                 </button>
+              </div>
+              <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+                <img
+                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+                  alt=""
+                  class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
+                />
+                <div
+                  class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
+                  aria-hidden="true"
+                >
+                  <div
+                    class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
+                    style={{
+                      clipPath:
+                        "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%",
+                    }}
+                  ></div>
+                </div>
+                <div
+                  class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
+                  aria-hidden="true"
+                >
+                  <div
+                    class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
+                    style={{
+                      clipPath:
+                        "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%",
+                    }}
+                  ></div>
+                </div>
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                  <div class="mx-auto max-w-2xl lg:mx-0">
+                    <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                      Work with us
+                    </h2>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">
+                      Anim aute id magna aliqua ad ad non deserunt sunt. Qui
+                      irure qui lorem cupidatat commodo. Elit sunt amet fugiat
+                      veniam occaecat fugiat aliqua.
+                    </p>
+                  </div>
+                  <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
+                    <div class="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+                      <a href="#">
+                        Open roles <span aria-hidden="true">&rarr;</span>
+                      </a>
+                      <a href="#">
+                        Internship program{" "}
+                        <span aria-hidden="true">&rarr;</span>
+                      </a>
+                      <a href="#">
+                        Our values <span aria-hidden="true">&rarr;</span>
+                      </a>
+                      <a href="#">
+                        Meet our leadership{" "}
+                        <span aria-hidden="true">&rarr;</span>
+                      </a>
+                    </div>
+                    <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+                      <div class="flex flex-col-reverse">
+                        <dt class="text-base leading-7 text-gray-300">
+                          Offices worldwide
+                        </dt>
+                        <dd class="text-2xl font-bold leading-9 tracking-tight text-white">
+                          12
+                        </dd>
+                      </div>
+                      <div class="flex flex-col-reverse">
+                        <dt class="text-base leading-7 text-gray-300">
+                          Full-time colleagues
+                        </dt>
+                        <dd class="text-2xl font-bold leading-9 tracking-tight text-white">
+                          300+
+                        </dd>
+                      </div>
+                      <div class="flex flex-col-reverse">
+                        <dt class="text-base leading-7 text-gray-300">
+                          Hours per week
+                        </dt>
+                        <dd class="text-2xl font-bold leading-9 tracking-tight text-white">
+                          40
+                        </dd>
+                      </div>
+                      <div class="flex flex-col-reverse">
+                        <dt class="text-base leading-7 text-gray-300">
+                          Paid time off
+                        </dt>
+                        <dd class="text-2xl font-bold leading-9 tracking-tight text-white">
+                          Unlimited
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
               </div>
               <div className="py-48 flex xl:flex-row md:flex-col sm:flex-col ">
                 <div className="w-1/2 md:w-full sm:w-full">
@@ -307,6 +266,42 @@ function Main() {
                       className={`${styles.vidSection}`}
                     ></iframe>
                   </div>
+                </div>
+              </div>
+
+              <div class="relative isolate overflow-hidden bg-gray-900  py-24 sm:py-32 rounded-md ">
+                <img
+                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+                  alt=""
+                  class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
+                />
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                  <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                      <dt class="text-base leading-7 text-white">
+                        Transactions every 24 hours
+                      </dt>
+                      <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                        44 million
+                      </dd>
+                    </div>
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                      <dt class="text-base leading-7 text-white">
+                        Assets under holding
+                      </dt>
+                      <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                        $119 trillion
+                      </dd>
+                    </div>
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                      <dt class="text-base leading-7 text-white">
+                        New users annually
+                      </dt>
+                      <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                        46,000
+                      </dd>
+                    </div>
+                  </dl>
                 </div>
               </div>
             </div>
