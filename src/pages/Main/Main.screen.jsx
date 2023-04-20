@@ -12,6 +12,7 @@ import { getPoemAsync } from "../../features/poemSlice";
 import PoemCard from "../../components/poenCard/PoemCard.component";
 import Wrapper from "../../components/Wrapper/Wrapper.component";
 import loader from "../../assert/load1.svg";
+import { Link } from "react-router-dom";
 // import { FapoemsowRight } from "react-icons/fa";
 
 function Main() {
@@ -27,7 +28,7 @@ function Main() {
   // console.log(typeof poems);
   const array = poems.slice(12);
   console.log(array);
-
+  const auth = localStorage.getItem("auth");
   return (
     <section className={`${styles.main_screen}`}>
       <Wrapper>
@@ -141,7 +142,11 @@ function Main() {
                   type="button"
                   class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-5 text-center mr-2 mb-2"
                 >
-                  <p> Browse latest poems </p>
+                  <p>
+                    <Link to={auth ? "/dashboard" : "/login"}>
+                      Browse latest poems{" "}
+                    </Link>
+                  </p>
                 </button>
               </div>
               <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
@@ -247,7 +252,7 @@ function Main() {
                     Artificial Intelligence coming soon on Poexa!
                   </p>
                   <p
-                    className={`${styles.text} xl:text-2xl md:text-xl sm:text-xl pb-12`}
+                    className={`${styles.text} xl:text-2xl md:text-xl sm:text-xl pb-12 pr-20`}
                   >
                     This will help revolutionise the content of your app. Its
                     going to rate the content of your work and link you to great

@@ -67,10 +67,5 @@
   overflow: hidden;
 }
 .poems {
-  @apply w-full flex flex-wrap  grid xl:grid-cols-3 gap-x-8 gap-y-10 pb-8 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1;
-  /* @apply md:grid grid-cols-2;
-  @apply sm:grid grid-cols-1 gap-y-8;
-  @apply lg:grid grid-cols-2;
-  @apply xl:grid grid-cols-3;
-  @apply 2xl:; */
+  @apply w-full flex justify-center flex-wrap  grid xl:grid-cols-3 gap-x-8 gap-y-10 pb-8 lg:grid-cols-2 md:grid-cols-2;
 }
