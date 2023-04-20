@@ -268,11 +268,11 @@ function Posts() {
 
       <div
         class={
-          windowWidth.current > 500 && open
+          windowWidth.current < 500 && open
             ? "p-4 sm:ml-64"
-            : windowWidth.current < 500 || open
-            ? "p-4 lg:container mx-auto px-4 sm:max-w-sm mx-auto sm:mx-auto"
-            : "p-4"
+            : windowWidth.current > 500 || open
+            ? "p-4 lg:container mx-auto px-4 sm:max-w-sm mx-auto sm:mx-auto "
+            : "p-4 sm:ml-64 "
         }
       >
         <div class="mt-16 ">
@@ -288,6 +288,15 @@ function Posts() {
 
           <div className="h-full flex justify-center items-center">
             <div>
+              <div>
+                <h1
+                  className="text-4xl pb-8"
+                  style={{ color: "rgba(22,13,61,0.902)" }}
+                >
+                  {" "}
+                  Personal Poems
+                </h1>
+              </div>
               {poems.length === 0 ? (
                 <div
                   className="grid grid-cols-1"
@@ -300,6 +309,13 @@ function Posts() {
                   }}
                 >
                   <img src={loader} />
+                  <h1
+                    className="text-4xl pb-8"
+                    style={{ color: "rgba(22,13,61,0.902)" }}
+                  >
+                    {" "}
+                    No Poems Created
+                  </h1>
                 </div>
               ) : (
                 <div class="w-full flex flex-wrap">

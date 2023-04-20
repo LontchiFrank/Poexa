@@ -251,6 +251,15 @@ function Dashboard() {
         }
       >
         <div class="w-full pt-16 flex flex-wrap">
+          <div>
+            <h1
+              className="text-4xl pb-8"
+              style={{ color: "rgba(22,13,61,0.902)" }}
+            >
+              {" "}
+              All Poems
+            </h1>
+          </div>
           <div className={`${styles.poems} `}>
             {poems.map((item, key) => (
               <PoemCard
