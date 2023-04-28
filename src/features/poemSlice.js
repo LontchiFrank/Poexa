@@ -4,7 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { myAlert } from "../components/Alert/myAlert";
 
-const API_URL = "http://localhost:8000/api/poem/";
+const API_URL = "https://poexabackend.onrender.com/api/poem/";
 const token = localStorage.getItem("token");
 const config = {
   headers: {

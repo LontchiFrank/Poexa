@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { myAlert } from "../components/Alert/myAlert";
 // import { createPoemAsync } from "./poemSlice";
 
-const API_URL = "http://localhost:8000/api/user";
+const API_URL = "https://poexabackend.onrender.com/api/user";
 const API_URL_POEMS = "http://localhost:8000/api/poem/";
 
 const initialState = {
