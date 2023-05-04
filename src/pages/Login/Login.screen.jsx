@@ -47,16 +47,19 @@ function Login() {
   };
 
   return (
-    <div>
-      {show ? (
+    <div style={{ height: "100vh", width: "100%" }}>
+      {/* {show ? (
         <Alert color="bg-success-100 " title="Login Success!" />
       ) : (
         <Alert color="bg-danger-100 " title="Login Failed!" />
-      )}
+      )} */}
       {auth ? (
         window.location.replace("/dashboard")
       ) : (
-        <section class="bg-violet-50 dark:bg-gray-900">
+        <section
+          class="bg-violet-50 dark:bg-gray-900"
+          style={{ height: "100%", width: "100%" }}
+        >
           <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a
               href="#"
