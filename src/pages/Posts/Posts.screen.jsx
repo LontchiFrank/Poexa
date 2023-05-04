@@ -272,7 +272,7 @@ function Posts() {
             ? "p-4 sm:ml-64"
             : windowWidth.current > 500 || open
             ? "p-4 lg:container mx-auto px-4 sm:max-w-sm mx-auto sm:mx-auto "
-            : "p-4 sm:ml-64 "
+            : "p-4 lg:container mx-auto sm:max-w-sm  "
         }
       >
         <div class="mt-16 ">
