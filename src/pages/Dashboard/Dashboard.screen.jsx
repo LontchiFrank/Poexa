@@ -244,10 +244,10 @@ function Dashboard() {
       <div
         class={
           windowWidth.current < 500 && open
-            ? "p-4 sm:ml-64"
+            ? "p-4 lg:container mx-auto px-4 sm:max-w-sm mx-auto sm:mx-auto "
             : windowWidth.current > 500 || open
             ? "p-4 lg:container mx-auto px-4 sm:max-w-sm mx-auto sm:mx-auto "
-            : "p-4 sm:ml-64 "
+            : "p-4 lg:container mx-20 sm:max-w-sm  "
         }
       >
         <div class="w-full pt-16 flex flex-wrap">
