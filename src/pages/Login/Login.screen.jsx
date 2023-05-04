@@ -3,7 +3,8 @@ import Poexa from "../../assert/PoeXa.png";
 import { signInUser } from "../../features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Alert from "../../components/Alerts/Alert.component";
+import load from "../../assert/load1.svg";
+import { RouteLoader } from "../../components";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ function Login() {
   const auth = useSelector((data) => data.user?.authenticate);
   localStorage.setItem("auth", auth);
   const getAuth = localStorage.getItem("auth");
+  const loader = localStorage.getItem("loading");
   const [show, setShow] = useState(null);
 
   const [alert, setAlert] = useState(true);
@@ -30,7 +32,11 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(signInUser(formData));
+    if (loader) {
+      return <RouteLoader />;
+    } else {
+      dispatch(signInUser(formData));
+    }
 
     setTimeout(() => {
       setAlert(false);

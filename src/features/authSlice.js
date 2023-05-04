@@ -77,6 +77,7 @@ export const authSlide = createSlice({
       state.loading = true;
       state.authenticate = false;
       state.error = null;
+      localStorage.setItem("loading", state.loading);
     },
     [signInUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
