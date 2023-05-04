@@ -42,23 +42,10 @@ function Login() {
       setAlert(false);
       setShow(true);
     }, 3000);
-    // if (getAuth) {
-    //   <Alert color="bg-success-100 " />;
-    //   // navigate("/dashboard");
-    // } else {
-    //   // <Navigate replace to="/login" />;
-    //   <Alert color="bg-danger-100 " />;
-    //   // navigate("/login");
-    // }
   };
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
-      {/* {show ? (
-        <Alert color="bg-success-100 " title="Login Success!" />
-      ) : (
-        <Alert color="bg-danger-100 " title="Login Failed!" />
-      )} */}
       {auth ? (
         window.location.replace("/dashboard")
       ) : (
