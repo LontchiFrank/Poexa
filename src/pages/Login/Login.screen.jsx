@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import load from "../../assert/load1.svg";
 import { RouteLoader } from "../../components";
+import Helmet from "react-helmet";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -36,6 +37,10 @@ function Login() {
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
+      <Helmet>
+        <title>Login Poexa</title>
+        <meta name="description" content="Helmet application" />
+      </Helmet>
       {auth ? (
         window.location.replace("/dashboard")
       ) : (

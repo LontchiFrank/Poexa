@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Poexa from "../../assert/PoeXa.png";
 import { useDispatch } from "react-redux";
 import { signUpUser } from "../../features/authSlice";
+import Helmet from "react-helmet";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -34,6 +35,10 @@ function Register() {
       class="bg-violet-50 dark:bg-gray-900 "
       style={{ height: "100vh", width: "100%" }}
     >
+      <Helmet>
+        <title>Register Poexa</title>
+        <meta name="description" content="Helmet application" />
+      </Helmet>
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
