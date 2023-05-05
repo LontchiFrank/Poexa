@@ -31,17 +31,7 @@ function Login() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (loader) {
-      return <RouteLoader />;
-    } else {
-      dispatch(signInUser(formData));
-    }
-
-    setTimeout(() => {
-      setAlert(false);
-      setShow(true);
-    }, 3000);
+    dispatch(signInUser(formData));
   };
 
   return (
