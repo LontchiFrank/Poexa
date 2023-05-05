@@ -79,7 +79,7 @@ function Posts() {
       />
       <DelModal show={show2} handleClickClose1={handleClickClose2} col={col} />
       <Helmet>
-        <title>Post</title>
+        <title>Posts</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
       <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
