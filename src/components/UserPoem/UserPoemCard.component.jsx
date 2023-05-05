@@ -3,16 +3,11 @@ import styles from "./Userpoem.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { BiPencil, BiTrash } from "react-icons/bi";
 import LinesEllipsis from "react-lines-ellipsis";
-import Helmet from "react-helmet";
 
 function UserPoemCard({ item, on, handleClick, handleClick2 }) {
   return (
     <div class={`${styles.card} max-w-sm rounded overflow-hidden shadow-lg`}>
       <img class="w-full h-64" src={item.image} alt="Sunset in the mountains" />
-      <Helmet>
-        <title>{item.title}</title>
-        <meta name="description" content="Helmet application" />
-      </Helmet>
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{item.title}</div>
         <p class="text-gray-700 text-base">
