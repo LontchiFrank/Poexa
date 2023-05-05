@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Poem.module.css";
 import { FiHeart } from "react-icons/fi";
 import LinesEllipsis from "react-lines-ellipsis";
+import Helmet from "react-helmet";
 
 function PoemCard({ item, on, handleClick }) {
   const [show, setShow] = useState(false);
@@ -19,6 +20,10 @@ function PoemCard({ item, on, handleClick }) {
 
   return (
     <div class="max-w-sm w-full lg:max-w-full lg:flex">
+      <Helmet>
+        <title>{item.title}</title>
+        <meta name="description" content="Helmet application" />
+      </Helmet>
       <div
         class="h-48 lg:h-auto lg:w-48 flex-none bg-cover  rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
         style={{ backgroundImage: `url(${item.image})` }}

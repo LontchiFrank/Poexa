@@ -10,6 +10,7 @@ import { getPrivatePoemAsync } from "../../features/poemSlice";
 import UserPoemCard from "../../components/UserPoem/UserPoemCard.component";
 import ModalUser from "../../components/ModalUser/ModalUser.component";
 import DelModal from "../../components/DeleteModal/DelModal.component";
+import Helmet from "react-helmet";
 
 function Posts() {
   const [info, setInfo] = useState();
@@ -77,6 +78,10 @@ function Posts() {
         col={col}
       />
       <DelModal show={show2} handleClickClose1={handleClickClose2} col={col} />
+      <Helmet>
+        <title>Post</title>
+        <meta name="description" content="Helmet application" />
+      </Helmet>
       <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
