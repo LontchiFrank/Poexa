@@ -13,6 +13,7 @@ import PoemCard from "../../components/poenCard/PoemCard.component";
 import Wrapper from "../../components/Wrapper/Wrapper.component";
 import loader from "../../assert/load1.svg";
 import { Link } from "react-router-dom";
+import Helmet from "react-helmet";
 // import { FapoemsowRight } from "react-icons/fa";
 
 function Main() {
@@ -32,6 +33,13 @@ function Main() {
   return (
     <section className={`${styles.main_screen}`}>
       <Wrapper>
+        <Helmet>
+          <title>Poexa</title>
+          <meta
+            name="Poexa"
+            content="Discover highly useful & amazing Poems Resources & Tools. A growing archive of 1000+ poems resources, by great poets for the community."
+          />
+        </Helmet>
         <div className="md:container xl:px-8 px-28 mx-auto  pt-8 max-[940px]:px-12  ">
           <div className={`${styles.whole} w-full md:flex mt-28  `}>
             <div className={`${styles.hero} xl:w-2/5 md:w-full`}>
