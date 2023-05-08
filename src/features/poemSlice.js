@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { data } from "autoprefixer";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,6 +48,19 @@ export const getPoemAsync = (data) => async (dispatch) => {
     throw new Error(error);
   }
 };
+// export const getPoemAsync = createAsyncThunk(
+//   "poem/getPoem",
+//   async (dispatch) => {
+//     try {
+//       const response = await axios.get(`${API_URL}`);
+
+//       dispatch(getPoem(response.data));
+//     } catch (error) {
+//       throw new Error(error);
+//     }
+//   }
+// );
+
 export const getPrivatePoemAsync = (data) => async (dispatch) => {
   try {
     const response = await axios.get(`${API_URL}userpoem`, config);
@@ -57,6 +70,20 @@ export const getPrivatePoemAsync = (data) => async (dispatch) => {
     throw new Error(error);
   }
 };
+
+// export const getPrivatePoemAsync = createAsyncThunk(
+//   "poem/getPrivatePoem",
+//   (data) => async (dispatch) => {
+//     try {
+//       const response = await axios.get(`${API_URL}userpoem`, config);
+//       dispatch(getPrivatePoem(response.data));
+//       // console.log(response.data);
+//     } catch (error) {
+//       throw new Error(error);
+//     }
+//   }
+// );
+
 // export const signUpUser = createAsyncThunk("registeruser",
 export const createPoemAsync = (data) => async (dispatch) => {
   try {
@@ -81,6 +108,32 @@ export const createPoemAsync = (data) => async (dispatch) => {
   }
 };
 
+// export const createPoemAsync = createAsyncThunk(
+//   "poem/createPoem",
+//   (data) => async (dispatch) => {
+//     try {
+//       const token = localStorage.getItem("token");
+//       console.log(localStorage.getItem("token"));
+//       const res = await axios.post(`${API_URL}new-poem`, data, {
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//           "auth-token": token,
+//         },
+//       });
+//       dispatch(createPoem(res.data));
+//       console.log({ res });
+//       if (res.status == "200") {
+//         myAlert(true, "Created successfully");
+//       }
+//       console.log(token, "haha");
+//     } catch (error) {
+//       // throw new Error(error);
+
+//       console.log(error);
+//     }
+//   }
+// );
+
 export const editPoemAsync = (data) => async (dispatch) => {
   try {
     const response = await axios.put(`${API_URL}${data.id}`, data.info, config);
@@ -92,6 +145,25 @@ export const editPoemAsync = (data) => async (dispatch) => {
     console.log(error);
   }
 };
+
+// export const editPoemAsync = createAsyncThunk(
+//   "poem/editPoem",
+//   (data) => async (dispatch) => {
+//     try {
+//       const response = await axios.put(
+//         `${API_URL}${data.id}`,
+//         data.info,
+//         config
+//       );
+//       dispatch(editPoem(response.data));
+//       if (response.status == "200") {
+//         myAlert(true, "Edited successfully");
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
 
 export const deletePoemAsync = (data) => async (dispatch) => {
   try {
@@ -106,6 +178,23 @@ export const deletePoemAsync = (data) => async (dispatch) => {
     console.log(error);
   }
 };
+
+// export const deletePoemAsync = createAsyncThunk(
+//   "poem/deletePoem",
+//   (data) => async (dispatch) => {
+//     try {
+//       console.log(data);
+//       const response = await axios.delete(`${API_URL}${data}`, config);
+//       dispatch(deletePoem(response));
+//       if (response.status == "200") {
+//         myAlert(true, "Deleted successfully");
+//       }
+//       // return true;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
 
 export const { getPoem, createPoem, getPrivatePoem, editPoem, deletePoem } =
   poemSlide.actions;
