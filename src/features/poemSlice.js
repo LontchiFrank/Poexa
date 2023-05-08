@@ -12,11 +12,51 @@ const config = {
     "auth-token": token,
   },
 };
+export const createPoemAsync = createAsyncThunk(
+  "poem/createPoem",
+  async (data) => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log(localStorage.getItem("token"));
+      const res = await axios.post(`${API_URL}new-poem`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "auth-token": token,
+        },
+      });
+      createPoem(res.data);
+      console.log({ res });
+      if (res.status == "200") {
+        myAlert(true, "Created successfully");
+        window.location.reload(false);
+      }
+      console.log(token, "haha");
+    } catch (error) {
+      // throw new Error(error);
 
+      console.log(error);
+    }
+  }
+);
+
+export const editPoemAsync = createAsyncThunk("poem/editPoem", async (data) => {
+  try {
+    const response = await axios.put(`${API_URL}${data.id}`, data.info, config);
+    editPoem(response.data);
+    if (response.status == "200") {
+      myAlert(true, "Edited successfully");
+      window.location.reload(false);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 export const poemSlide = createSlice({
   name: "poem",
   initialState: {
     data: [],
+    loading: false,
+    authenticate: null,
   },
   reducers: {
     getPoem: (state, action) => {
@@ -37,7 +77,24 @@ export const poemSlide = createSlice({
       state.data = data.filter((item) => item.id !== action.payload.id);
     },
   },
-  extraReducers: {},
+  extraReducers: {
+    [createPoemAsync.pending]: (state) => {
+      state.loading = true;
+      state.authenticate = false;
+    },
+    [createPoemAsync.fulfilled]: (state) => {
+      state.loading = false;
+      state.authenticate = true;
+    },
+    [editPoemAsync.pending]: (state) => {
+      state.loading = true;
+      state.authenticate = false;
+    },
+    [editPoemAsync.fulfilled]: (state) => {
+      state.loading = false;
+      state.authenticate = true;
+    },
+  },
 });
 
 export const getPoemAsync = (data) => async (dispatch) => {
@@ -85,66 +142,28 @@ export const getPrivatePoemAsync = (data) => async (dispatch) => {
 // );
 
 // export const signUpUser = createAsyncThunk("registeruser",
-export const createPoemAsync = (data) => async (dispatch) => {
-  try {
-    const token = localStorage.getItem("token");
-    console.log(localStorage.getItem("token"));
-    const res = await axios.post(`${API_URL}new-poem`, data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        "auth-token": token,
-      },
-    });
-    dispatch(createPoem(res.data));
-    console.log({ res });
-    if (res.status == "200") {
-      myAlert(true, "Created successfully");
-    }
-    console.log(token, "haha");
-  } catch (error) {
-    // throw new Error(error);
-
-    console.log(error);
-  }
-};
-
-// export const createPoemAsync = createAsyncThunk(
-//   "poem/createPoem",
-//   (data) => async (dispatch) => {
-//     try {
-//       const token = localStorage.getItem("token");
-//       console.log(localStorage.getItem("token"));
-//       const res = await axios.post(`${API_URL}new-poem`, data, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//           "auth-token": token,
-//         },
-//       });
-//       dispatch(createPoem(res.data));
-//       console.log({ res });
-//       if (res.status == "200") {
-//         myAlert(true, "Created successfully");
-//       }
-//       console.log(token, "haha");
-//     } catch (error) {
-//       // throw new Error(error);
-
-//       console.log(error);
+// export const createPoemAsync = (data) => async (dispatch) => {
+//   try {
+//     const token = localStorage.getItem("token");
+//     console.log(localStorage.getItem("token"));
+//     const res = await axios.post(`${API_URL}new-poem`, data, {
+//       headers: {
+//         "Content-Type": "multipart/form-data",
+//         "auth-token": token,
+//       },
+//     });
+//     dispatch(createPoem(res.data));
+//     console.log({ res });
+//     if (res.status == "200") {
+//       myAlert(true, "Created successfully");
 //     }
-//   }
-// );
+//     console.log(token, "haha");
+//   } catch (error) {
+//     // throw new Error(error);
 
-export const editPoemAsync = (data) => async (dispatch) => {
-  try {
-    const response = await axios.put(`${API_URL}${data.id}`, data.info, config);
-    dispatch(editPoem(response.data));
-    if (response.status == "200") {
-      myAlert(true, "Edited successfully");
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
+//     console.log(error);
+//   }
+// };
 
 // export const editPoemAsync = createAsyncThunk(
 //   "poem/editPoem",
