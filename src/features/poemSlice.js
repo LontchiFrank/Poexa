@@ -51,6 +51,27 @@ export const editPoemAsync = createAsyncThunk("poem/editPoem", async (data) => {
     console.log(error);
   }
 });
+
+export const deletePoemAsync = createAsyncThunk(
+  "poem/deletePoem",
+  async (data) => {
+    try {
+      console.log(data);
+      const response = await axios.delete(`${API_URL}${data}`, config);
+      deletePoem(response);
+      if (response.status == "200") {
+        myAlert(true, "Deleted successfully");
+        window.location.reload(false);
+      } else {
+        myAlert(false, "Failed to Delete");
+      }
+      // return true;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const poemSlide = createSlice({
   name: "poem",
   initialState: {
@@ -91,6 +112,14 @@ export const poemSlide = createSlice({
       state.authenticate = false;
     },
     [editPoemAsync.fulfilled]: (state) => {
+      state.loading = false;
+      state.authenticate = true;
+    },
+    [deletePoemAsync.pending]: (state) => {
+      state.loading = true;
+      state.authenticate = false;
+    },
+    [deletePoemAsync.fulfilled]: (state) => {
       state.loading = false;
       state.authenticate = true;
     },
@@ -178,37 +207,6 @@ export const getPrivatePoemAsync = (data) => async (dispatch) => {
 //       if (response.status == "200") {
 //         myAlert(true, "Edited successfully");
 //       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// );
-
-export const deletePoemAsync = (data) => async (dispatch) => {
-  try {
-    console.log(data);
-    const response = await axios.delete(`${API_URL}${data}`, config);
-    dispatch(deletePoem(response));
-    if (response.status == "200") {
-      myAlert(true, "Deleted successfully");
-    }
-    // return true;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-// export const deletePoemAsync = createAsyncThunk(
-//   "poem/deletePoem",
-//   (data) => async (dispatch) => {
-//     try {
-//       console.log(data);
-//       const response = await axios.delete(`${API_URL}${data}`, config);
-//       dispatch(deletePoem(response));
-//       if (response.status == "200") {
-//         myAlert(true, "Deleted successfully");
-//       }
-//       // return true;
 //     } catch (error) {
 //       console.log(error);
 //     }
